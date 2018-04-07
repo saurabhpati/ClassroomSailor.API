@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClassroomSailor.DAL\ClassroomSailor.DAL.csproj" />
+    <ProjectReference Include="..\ClassroomSailor.Services\ClassroomSailor.Services.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ClassroomSailor.DAL\ClassroomSailor.DAL.csproj" />
+    <ProjectReference Include="..\ClassroomSailor.Entities\ClassroomSailor.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

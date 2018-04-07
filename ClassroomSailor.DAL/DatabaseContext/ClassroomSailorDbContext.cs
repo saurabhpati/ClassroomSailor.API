@@ -1,4 +1,7 @@
-﻿using ClassroomSailor.Entities.Student;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using ClassroomSailor.Entities.Student;
 using ClassroomSailor.Entities.Subject;
 using ClassroomSailor.Entities.Teacher;
 using Microsoft.EntityFrameworkCore;
@@ -16,5 +19,10 @@ namespace ClassroomSailor.DAL.DatabaseContext
         public DbSet<StudentEntity> Students { get; set; }
 
         public DbSet<SubjectEntity> Subjects { get; set; }
+
+        public async Task<TeacherEntity> GetTeacher(Int64 id)
+        {
+            return await this.Teachers.Where(teacher => teacher.Id == id).FirstAsync();
+        }
     }
 }

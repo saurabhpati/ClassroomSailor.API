@@ -16,19 +16,24 @@ namespace ClassroomSailor.Services.Student
             this._repository = repository;
         }
 
-        public async Task<IEnumerable<StudentEntity>> GetAll()
+        public async Task<IEnumerable<StudentEntity>> GetAllAsync()
         {
-            return await this._repository.GetAll();
+            return await this._repository.GetAllAsync();
         }
 
-        public async Task<StudentEntity> GetByEmail(String email)
+        public async Task<StudentEntity> GetByEmailAsync(String email)
         {
-            return await this._repository.GetByEmail(email);
+            return await this._repository.GetByEmailAsync(email);
         }
 
-        public async Task<StudentEntity> GetById(Int64 id)
+        public async Task<StudentEntity> GetByIdAsync(Int64 id)
         {
-            return await this._repository.GetById(id);
+            return await this._repository.GetByIdAsync(id);
+        }
+
+        public async Task<StudentEntity> AddAsync(StudentEntity entity)
+        {
+            return await this._repository.AddAsync(entity);
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ClassroomSailor.DAL.DatabaseContext;
 using ClassroomSailor.Entities.Student;
 using ClassroomSailor.Repositories.User;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace ClassroomSailor.Repositories.Student
 {
@@ -17,20 +18,38 @@ namespace ClassroomSailor.Repositories.Student
             this._database = context;
         }
 
-        public async Task<StudentEntity> GetById(Int64 id)
+        public async Task<StudentEntity> GetByIdAsync(Int64 id)
         {
-            return await this._database.Students.FindAsync(id);
+            using (this._database)
+            {
+                return await this._database.Students.FindAsync(id);
+            }
         }
         
-        public async Task<StudentEntity> GetByEmail(String email)
+        public async Task<StudentEntity> GetByEmailAsync(String email)
         {
-            return await Task.FromResult(this._database.Students
-                .FirstOrDefault(student => String.Compare(student.Email, email, StringComparison.OrdinalIgnoreCase) == 0));
+            using (this._database)
+            {
+                return await Task.FromResult(this._database.Students
+                    .FirstOrDefault(student => String.Compare(student.Email, email, StringComparison.OrdinalIgnoreCase) == 0));
+            }
         }
 
-        public async Task<IEnumerable<StudentEntity>> GetAll()
+        public async Task<IEnumerable<StudentEntity>> GetAllAsync()
         {
-            return await Task.FromResult(this._database.Students);
+            using (this._database)
+            {
+                return await Task.FromResult(this._database.Students);
+            }
+        }
+
+        public async Task<StudentEntity> AddAsync(StudentEntity entity)
+        {
+            using (this._database)
+            {
+                EntityEntry<StudentEntity> addedEntry = await this._database.AddAsync(entity);
+                return addedEntry.Entity;
+            }
         }
     }
 }

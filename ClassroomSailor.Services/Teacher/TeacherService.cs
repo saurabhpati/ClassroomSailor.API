@@ -16,19 +16,28 @@ namespace ClassroomSailor.Services.Teacher
             this._repository = repository;
         }
 
-        public async Task<TeacherEntity> GetById(Int64 teacherId)
+        #region Read
+
+        public async Task<TeacherEntity> GetByIdAsync(Int64 teacherId)
         {
-            return await this._repository.GetById(teacherId);
+            return await this._repository.GetByIdAsync(teacherId);
         }
 
-        public async Task<TeacherEntity> GetByEmail(String email)
+        public async Task<TeacherEntity> GetByEmailAsync(String email)
         {
-            return await this._repository.GetByEmail(email);
+            return await this._repository.GetByEmailAsync(email);
         }
 
-        public async Task<IEnumerable<TeacherEntity>> GetAll()
+        public async Task<IEnumerable<TeacherEntity>> GetAllAsync()
         {
-            return await this._repository.GetAll();
+            return await this._repository.GetAllAsync();
+        }
+
+        #endregion
+
+        public async Task<TeacherEntity> AddAsync(TeacherEntity entity)
+        {
+            return await this.AddAsync(entity);
         }
     }
 }

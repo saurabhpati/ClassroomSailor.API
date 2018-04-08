@@ -7,6 +7,6 @@ namespace ClassroomSailor.Services.User
 {
     public interface IClassroomSailorUserService<T> : IService<T> where T : ClassroomSailorUserEntity
     {
-        Task<T> GetByEmail(String email);
+        Task<T> GetByEmailAsync(String email);
     }
 }

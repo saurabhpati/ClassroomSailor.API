@@ -16,24 +16,43 @@ namespace ClassroomSailor.API.Controllers
             this._service = service;
         }
 
+        #region Get
+
         [Route("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> GetAsync(int id)
         {
-            TeacherEntity entity = await this._service.GetById(id);
+            TeacherEntity entity = await this._service.GetByIdAsync(id);
             return new JsonResult(entity);
         }
 
         [Route("{email}")]
-        public async Task<IActionResult> Get(string email)
+        public async Task<IActionResult> GetAsync(string email)
         {
-            TeacherEntity entity = await this._service.GetByEmail(email);
+            TeacherEntity entity = await this._service.GetByEmailAsync(email);
             return new JsonResult(entity);
         }
 
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAsync()
         {
-            IEnumerable<TeacherEntity> entity = await this._service.GetAll();
+            IEnumerable<TeacherEntity> entity = await this._service.GetAllAsync();
             return new JsonResult(entity);
         }
+
+        #endregion
+
+        #region Add
+
+        public async Task<IActionResult> PostAsync(TeacherEntity teacher)
+        {
+            if (teacher == null)
+            {
+                return null;
+            }
+
+            TeacherEntity entity = await this._service.AddAsync(teacher);
+            return new JsonResult(entity);
+        }
+
+        #endregion
     }
 }

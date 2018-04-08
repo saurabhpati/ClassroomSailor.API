@@ -22,7 +22,9 @@ namespace ClassroomSailor.Repositories.Teacher
         {
             using (this._database)
             {
-                return await this._database.Teachers.FindAsync(teacherId);
+                TeacherEntity entity = await this._database.Teachers.FindAsync(teacherId);
+                await this._database.SaveChangesAsync();
+                return entity;
             }
         }
 
@@ -30,8 +32,10 @@ namespace ClassroomSailor.Repositories.Teacher
         {
             using (this._database)
             {
-                return await Task.FromResult<TeacherEntity>(this._database.Teachers.FirstOrDefault(teacher =>
-                    String.Compare(teacher.Email, email, StringComparison.OrdinalIgnoreCase) == 0));
+                TeacherEntity entity = this._database.Teachers.FirstOrDefault(teacher =>
+                    String.Compare(teacher.Email, email, StringComparison.OrdinalIgnoreCase) == 0);
+                await this._database.SaveChangesAsync();
+                return entity;
             }
         }
 
@@ -39,7 +43,9 @@ namespace ClassroomSailor.Repositories.Teacher
         {
             using (this._database)
             {
-                return await Task.FromResult(this._database.Teachers);
+                IEnumerable<TeacherEntity> teachers = this._database.Teachers;
+                await this._database.SaveChangesAsync();
+                return teachers;
             }
         }
 
@@ -53,6 +59,27 @@ namespace ClassroomSailor.Repositories.Teacher
                 }
 
                 EntityEntry<TeacherEntity> entry = await this._database.AddAsync(entity);
+                await this._database.SaveChangesAsync();
+                return entry.Entity;
+            }
+        }
+
+        public async Task<TeacherEntity> UpdateAsync(TeacherEntity entity)
+        {
+            using (this._database)
+            {
+                EntityEntry<TeacherEntity> entry = this._database.Update<TeacherEntity>(entity);
+                await this._database.SaveChangesAsync();
+                return entry.Entity;
+            }
+        }
+
+        public async Task<TeacherEntity> DeleteAsync(TeacherEntity entity)
+        {
+            using (this._database)
+            {
+                EntityEntry<TeacherEntity> entry = this._database.Remove<TeacherEntity>(entity);
+                await this._database.SaveChangesAsync();
                 return entry.Entity;
             }
         }

@@ -22,16 +22,21 @@ namespace ClassroomSailor.Repositories.Student
         {
             using (this._database)
             {
-                return await this._database.Students.FindAsync(id);
+                StudentEntity entity = await this._database.Students.FindAsync(id);
+                await this._database.SaveChangesAsync();
+                return entity;
             }
         }
-        
+
         public async Task<StudentEntity> GetByEmailAsync(String email)
         {
             using (this._database)
             {
-                return await Task.FromResult(this._database.Students
-                    .FirstOrDefault(student => String.Compare(student.Email, email, StringComparison.OrdinalIgnoreCase) == 0));
+
+                StudentEntity entity = this._database.Students
+                    .FirstOrDefault(student => String.Compare(student.Email, email, StringComparison.OrdinalIgnoreCase) == 0);
+                await this._database.SaveChangesAsync();
+                return entity;
             }
         }
 
@@ -39,7 +44,9 @@ namespace ClassroomSailor.Repositories.Student
         {
             using (this._database)
             {
-                return await Task.FromResult(this._database.Students);
+                IEnumerable<StudentEntity> students = this._database.Students;
+                await this._database.SaveChangesAsync();
+                return students;
             }
         }
 
@@ -48,7 +55,28 @@ namespace ClassroomSailor.Repositories.Student
             using (this._database)
             {
                 EntityEntry<StudentEntity> addedEntry = await this._database.AddAsync(entity);
+                await this._database.SaveChangesAsync();
                 return addedEntry.Entity;
+            }
+        }
+
+        public async Task<StudentEntity> UpdateAsync(StudentEntity entity)
+        {
+            using (this._database)
+            {
+                EntityEntry<StudentEntity> entry = this._database.Update<StudentEntity>(entity);
+                await this._database.SaveChangesAsync();
+                return entry.Entity;
+            }
+        }
+
+        public async Task<StudentEntity> DeleteAsync(StudentEntity entity)
+        {
+            using (this._database)
+            {
+                EntityEntry<StudentEntity> entry = this._database.Remove<StudentEntity>(entity);
+                await this._database.SaveChangesAsync();
+                return entry.Entity;
             }
         }
     }

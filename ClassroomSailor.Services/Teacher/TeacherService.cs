@@ -37,7 +37,17 @@ namespace ClassroomSailor.Services.Teacher
 
         public async Task<TeacherEntity> AddAsync(TeacherEntity entity)
         {
-            return await this.AddAsync(entity);
+            return await this._repository.AddAsync(entity);
+        }
+
+        public async Task<TeacherEntity> UpdateAsync(TeacherEntity entity)
+        {
+            return await this._repository.UpdateAsync(entity);
+        }
+
+        public async Task<TeacherEntity> DeleteAsync(TeacherEntity entity)
+        {
+            return await this._repository.DeleteAsync(entity);
         }
     }
 }

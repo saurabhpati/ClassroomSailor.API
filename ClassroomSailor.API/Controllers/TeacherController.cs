@@ -42,7 +42,8 @@ namespace ClassroomSailor.API.Controllers
 
         #region Add
 
-        public async Task<IActionResult> PostAsync(TeacherEntity teacher)
+        [HttpPost]
+        public async Task<IActionResult> PostAsync([FromBody]TeacherEntity teacher)
         {
             if (teacher == null)
             {

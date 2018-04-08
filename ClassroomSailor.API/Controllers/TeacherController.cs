@@ -1,25 +1,38 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ClassroomSailor.Entities.Teacher;
-using ClassroomSailor.Services.Teacher;
+using ClassroomSailor.Services.User;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomSailor.API.Controllers
 {
-    [Route("v1/api/Teacher")]
+    [Route("v1/api/[controller]")]
     public class TeacherController : Controller
     {
-        private readonly ITeacherService _service;
+        private readonly IClassroomSailorUserService<TeacherEntity> _service;
 
-        public TeacherController(ITeacherService service)
+        public TeacherController(IClassroomSailorUserService<TeacherEntity> service)
         {
             this._service = service;
         }
 
-        public async Task<IActionResult> Get(Int64 id)
+        [Route("{id}")]
+        public async Task<IActionResult> Get(int id)
         {
-            TeacherEntity entity = await this._service.GetTeacherById(id);
+            TeacherEntity entity = await this._service.GetById(id);
+            return new JsonResult(entity);
+        }
 
+        [Route("{email}")]
+        public async Task<IActionResult> Get(string email)
+        {
+            TeacherEntity entity = await this._service.GetByEmail(email);
+            return new JsonResult(entity);
+        }
+
+        public async Task<IActionResult> Get()
+        {
+            IEnumerable<TeacherEntity> entity = await this._service.GetAll();
             return new JsonResult(entity);
         }
     }

@@ -11,6 +11,12 @@ namespace ClassroomSailor.DAL.DatabaseContext
         {
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer("Server=SAURABH-PC\\SQLEXPRESS;Database=ClassroomSailor;Integrated Security=True;", options => options.MigrationsAssembly("ClassroomSailor.DAL"));
+        }
+
         public DbSet<TeacherEntity> Teachers { get; set; }
 
         public DbSet<StudentEntity> Students { get; set; }

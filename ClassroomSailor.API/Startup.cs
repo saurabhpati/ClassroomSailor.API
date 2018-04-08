@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using ClassroomSailor.Repositories;
+using ClassroomSailor.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +20,8 @@ namespace ClassroomSailor.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            RepositoryConfiguration.Configure(services, this.Configuration);
+            ServiceConfiguration.Configure(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -70,11 +70,12 @@ namespace ClassroomSailor.Repositories.Student
             }
         }
 
-        public async Task<StudentEntity> DeleteAsync(StudentEntity entity)
+        public async Task<StudentEntity> DeleteAsync(Int64 id)
         {
             using (this._database)
             {
-                EntityEntry<StudentEntity> entry = this._database.Remove<StudentEntity>(entity);
+                StudentEntity deleteEntity = await this._database.FindAsync<StudentEntity>(id);
+                EntityEntry<StudentEntity> entry = this._database.Remove<StudentEntity>(deleteEntity);
                 await this._database.SaveChangesAsync();
                 return entry.Entity;
             }

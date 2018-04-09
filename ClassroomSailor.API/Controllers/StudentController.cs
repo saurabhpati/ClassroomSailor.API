@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ClassroomSailor.Entities.Student;
 using ClassroomSailor.Services.User;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomSailor.API.Controllers
 {
+    [Route("v1/api/[controller]")]
     public class StudentController : Controller
     {
         private readonly IClassroomSailorUserService<StudentEntity> _service;
@@ -42,14 +44,49 @@ namespace ClassroomSailor.API.Controllers
         #region Add
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody]StudentEntity teacher)
+        [Route("Create")]
+        public async Task<IActionResult> PostAsync([FromBody]StudentEntity student)
         {
-            if (teacher == null)
+            if (student == null)
             {
                 return null;
             }
 
-            StudentEntity entity = await this._service.AddAsync(teacher);
+            StudentEntity entity = await this._service.AddAsync(student);
+            return new JsonResult(entity);
+        }
+
+        #endregion
+
+        #region Update
+
+        [HttpPut]
+        [Route("Update")]
+        public async Task<IActionResult> Update([FromBody]StudentEntity student)
+        {
+            if (student == null)
+            {
+                return null;
+            }
+
+            StudentEntity entity = await this._service.UpdateAsync(student);
+            return new JsonResult(entity);
+        }
+
+        #endregion
+
+        #region Delete
+
+        [HttpDelete]
+        [Route("Delete/{id}")]
+        public async Task<IActionResult> Delete(Int64 id)
+        {
+            if (id < 0)
+            {
+                return null;
+            }
+
+            StudentEntity entity = await this._service.DeleteAsync(id);
             return new JsonResult(entity);
         }
 

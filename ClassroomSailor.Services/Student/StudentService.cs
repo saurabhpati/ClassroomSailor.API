@@ -41,9 +41,9 @@ namespace ClassroomSailor.Services.Student
             return await this._repository.UpdateAsync(entity);
         }
 
-        public async Task<StudentEntity> DeleteAsync(StudentEntity entity)
+        public async Task<StudentEntity> DeleteAsync(Int64 id)
         {
-            return await this._repository.DeleteAsync(entity);
+            return await this._repository.DeleteAsync(id);
         }
     }
 }

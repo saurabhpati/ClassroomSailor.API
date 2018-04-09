@@ -15,6 +15,6 @@ namespace ClassroomSailor.Services.Common
 
         Task<T> UpdateAsync(T entity);
 
-        Task<T> DeleteAsync(T entity);
+        Task<T> DeleteAsync(Int64 id);
     }
 }

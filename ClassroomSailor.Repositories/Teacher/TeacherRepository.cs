@@ -74,11 +74,12 @@ namespace ClassroomSailor.Repositories.Teacher
             }
         }
 
-        public async Task<TeacherEntity> DeleteAsync(TeacherEntity entity)
+        public async Task<TeacherEntity> DeleteAsync(Int64 id)
         {
             using (this._database)
             {
-                EntityEntry<TeacherEntity> entry = this._database.Remove<TeacherEntity>(entity);
+                TeacherEntity deleteEntity = await this._database.FindAsync<TeacherEntity>(id);
+                EntityEntry<TeacherEntity> entry = this._database.Remove<TeacherEntity>(deleteEntity);
                 await this._database.SaveChangesAsync();
                 return entry.Entity;
             }

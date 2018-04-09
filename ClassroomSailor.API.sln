@@ -7,13 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassroomSailor.API", "Clas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassroomSailor.Entities", "ClassroomSailor.Entities\ClassroomSailor.Entities.csproj", "{3BA20896-18FC-43E9-958E-51ED2D2FD04A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassroomSailor.DAL", "ClassroomSailor.DAL\ClassroomSailor.DAL.csproj", "{E3F71E6B-BD4A-44AB-B635-7F5B73422996}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassroomSailor.API.Models", "ClassroomSailor.API.Models\ClassroomSailor.API.Models.csproj", "{F7AE3473-D80A-40A9-B695-D9FB774A1F11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassroomSailor.Services", "ClassroomSailor.Services\ClassroomSailor.Services.csproj", "{07A33469-4D63-4CA4-BF14-3D71EBA81B55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassroomSailor.Services", "ClassroomSailor.Services\ClassroomSailor.Services.csproj", "{07A33469-4D63-4CA4-BF14-3D71EBA81B55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassroomSailor.Repositories", "ClassroomSailor.Repositories\ClassroomSailor.Repositories.csproj", "{2613FB51-E954-49A9-B907-5AE9DF7C4B0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassroomSailor.Repositories", "ClassroomSailor.Repositories\ClassroomSailor.Repositories.csproj", "{2613FB51-E954-49A9-B907-5AE9DF7C4B0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		{3BA20896-18FC-43E9-958E-51ED2D2FD04A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BA20896-18FC-43E9-958E-51ED2D2FD04A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BA20896-18FC-43E9-958E-51ED2D2FD04A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E3F71E6B-BD4A-44AB-B635-7F5B73422996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E3F71E6B-BD4A-44AB-B635-7F5B73422996}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E3F71E6B-BD4A-44AB-B635-7F5B73422996}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E3F71E6B-BD4A-44AB-B635-7F5B73422996}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F7AE3473-D80A-40A9-B695-D9FB774A1F11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F7AE3473-D80A-40A9-B695-D9FB774A1F11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7AE3473-D80A-40A9-B695-D9FB774A1F11}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,5 +1,4 @@
-﻿using ClassroomSailor.DAL.DatabaseContext;
-using ClassroomSailor.Entities.Student;
+﻿using ClassroomSailor.Entities.Student;
 using ClassroomSailor.Entities.Teacher;
 using ClassroomSailor.Repositories.Student;
 using ClassroomSailor.Repositories.Teacher;
@@ -23,7 +22,7 @@ namespace ClassroomSailor.Repositories
             services.AddSingleton<IClassroomSailorUserRepository<StudentEntity>, StudentRepository>();
             services.AddDbContext<ClassroomSailorDbContext>(options => 
                 options.UseSqlServer(configuration.GetConnectionString("Default"), sqlOptions => 
-                    sqlOptions.MigrationsAssembly("ClassroomSailor.DAL")));
+                    sqlOptions.MigrationsAssembly("ClassroomSailor.Repositories")));
         }
     }
 }

@@ -28,7 +28,7 @@ namespace ClassroomSailor.API
                 .AddJsonFile("appsettings.json")
                 .Build();
             DbContextOptionsBuilder<ClassroomSailorDbContext> builder = new DbContextOptionsBuilder<ClassroomSailorDbContext>();
-            builder.UseSqlServer(configRoot.GetConnectionString("Default"), options => options.MigrationsAssembly("ClassroomSailor.DAL"));
+            builder.UseSqlServer(configRoot.GetConnectionString("Default"), options => options.MigrationsAssembly("ClassroomSailor.Repositories"));
             return new ClassroomSailorDbContext(builder.Options);
         }
     }

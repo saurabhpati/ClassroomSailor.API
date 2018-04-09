@@ -11,11 +11,11 @@ namespace ClassroomSailor.Repositories
         {
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server=SAURABH-PC\\SQLEXPRESS;Database=ClassroomSailor;Integrated Security=True;", options => options.MigrationsAssembly("ClassroomSailor.DAL"));
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    base.OnConfiguring(optionsBuilder);
+        //    optionsBuilder.UseSqlServer("Server=SAURABH-PC\\SQLEXPRESS;Database=ClassroomSailor;Integrated Security=True;", options => options.MigrationsAssembly("ClassroomSailor.Repositories"));
+        //}
 
         public DbSet<TeacherEntity> Teachers { get; set; }
 

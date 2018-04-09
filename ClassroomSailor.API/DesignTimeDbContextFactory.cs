@@ -1,5 +1,5 @@
 ﻿using System.IO;
-using ClassroomSailor.DAL.DatabaseContext;
+using ClassroomSailor.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;

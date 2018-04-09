@@ -3,7 +3,7 @@ using ClassroomSailor.Entities.Subject;
 using ClassroomSailor.Entities.Teacher;
 using Microsoft.EntityFrameworkCore;
 
-namespace ClassroomSailor.DAL.DatabaseContext
+namespace ClassroomSailor.Repositories
 {
     public class ClassroomSailorDbContext : DbContext
     {

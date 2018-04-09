@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
-namespace ClassroomSailor.DAL.Migrations
+namespace ClassroomSailor.Repositories.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Fourth : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,7 +55,6 @@ namespace ClassroomSailor.DAL.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Grade = table.Column<short>(nullable: false),
                     Name = table.Column<string>(maxLength: 64, nullable: false),
                     StudentEntityId = table.Column<long>(nullable: true),
                     TeacherEntityId = table.Column<long>(nullable: true)

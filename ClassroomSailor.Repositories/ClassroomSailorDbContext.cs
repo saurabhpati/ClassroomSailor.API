@@ -3,7 +3,7 @@ using ClassroomSailor.Entities.Subject;
 using ClassroomSailor.Entities.Teacher;
 using Microsoft.EntityFrameworkCore;
 
-namespace ClassroomSailor.DAL.DatabaseContext
+namespace ClassroomSailor.Repositories
 {
     public class ClassroomSailorDbContext : DbContext
     {
@@ -14,7 +14,7 @@ namespace ClassroomSailor.DAL.DatabaseContext
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server=SAURABH-PC\\SQLEXPRESS;Database=ClassroomSailor;Integrated Security=True;", options => options.MigrationsAssembly("ClassroomSailor.DAL"));
+            optionsBuilder.UseSqlServer("Server=SAURABH-PC\\SQLEXPRESS;Database=ClassroomSailor;Integrated Security=True;", options => options.MigrationsAssembly("ClassroomSailor.Repositories"));
         }
 
         public DbSet<TeacherEntity> Teachers { get; set; }

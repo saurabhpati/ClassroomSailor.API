@@ -1,7 +1,6 @@
-﻿using ClassroomSailor.Entities.Student;
+﻿using ClassroomSailor.Entities.Common;
+using ClassroomSailor.Entities.Student;
 using ClassroomSailor.Entities.Teacher;
-using ClassroomSailor.Repositories.Student;
-using ClassroomSailor.Repositories.Teacher;
 using ClassroomSailor.Repositories.User;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -18,11 +17,18 @@ namespace ClassroomSailor.Repositories
              */
             services.AddSingleton<DbContextOptions<ClassroomSailorDbContext>>();
             services.AddSingleton<ClassroomSailorDbContext>();
-            services.AddSingleton<IClassroomSailorUserRepository<TeacherEntity>, TeacherRepository>();
-            services.AddSingleton<IClassroomSailorUserRepository<StudentEntity>, StudentRepository>();
             services.AddDbContext<ClassroomSailorDbContext>(options => 
                 options.UseSqlServer(configuration.GetConnectionString("Default"), sqlOptions => 
                     sqlOptions.MigrationsAssembly("ClassroomSailor.Repositories")));
+            ConfigureUserRepositories<StudentEntity>(services);
+            ConfigureUserRepositories<TeacherEntity>(services);
+        }
+
+        private static void ConfigureUserRepositories<T>(IServiceCollection services) where T : ClassroomSailorUserEntity
+        {
+            services.AddSingleton<IClassroomSailorUserRepository<T>, ClassroomSailorUserRepository<T>>();
         }
     }
+
+    
 }

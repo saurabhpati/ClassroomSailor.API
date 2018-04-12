@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ClassroomSailor.API.Models\ClassroomSailor.API.Models.csproj" />
     <ProjectReference Include="..\ClassroomSailor.Services\ClassroomSailor.Services.csproj" />
   </ItemGroup>
 

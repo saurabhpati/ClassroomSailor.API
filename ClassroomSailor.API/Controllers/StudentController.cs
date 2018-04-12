@@ -1,14 +1,14 @@
 ﻿using ClassroomSailor.API.Controllers.User;
-using ClassroomSailor.Entities.User;
+using ClassroomSailor.API.Models.User;
 using ClassroomSailor.Services.User;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomSailor.API.Controllers
 {
     [Route("v1/api/[controller]")]
-    public class StudentController : ClassroomSailorUserController<StudentEntity>
+    public class StudentController : ClassroomSailorUserController<StudentApiModel>
     {
-        public StudentController(IClassroomSailorUserService<StudentEntity> service) : base(service)
+        public StudentController(IClassroomSailorUserService<StudentApiModel> service) : base(service)
         {
         }
     }

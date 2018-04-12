@@ -1,6 +1,6 @@
 ﻿namespace ClassroomSailor.API.Models.User
 {
-    class TeacherApiModel : ClassroomSailorUserApiModel
+    public class TeacherApiModel : ClassroomSailorUserApiModel
     {
     }
 }

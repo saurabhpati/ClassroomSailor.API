@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ClassroomSailor.Entities.User;
+using ClassroomSailor.API.Models.User;
 using ClassroomSailor.Services.User;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomSailor.API.Controllers.User
 {
-    public class ClassroomSailorUserController<T> : Controller where T : ClassroomSailorUserEntity
+    public class ClassroomSailorUserController<T> : Controller where T : ClassroomSailorUserApiModel
     {
         public ClassroomSailorUserController(IClassroomSailorUserService<T> service)
         {

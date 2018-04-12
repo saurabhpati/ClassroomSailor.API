@@ -1,5 +1,5 @@
 ﻿using ClassroomSailor.API.Controllers.User;
-using ClassroomSailor.Entities.Student;
+using ClassroomSailor.Entities.User;
 using ClassroomSailor.Services.User;
 using Microsoft.AspNetCore.Mvc;
 

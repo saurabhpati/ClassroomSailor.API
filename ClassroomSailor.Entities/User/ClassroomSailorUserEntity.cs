@@ -1,7 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using ClassroomSailor.Entities.Common;
 
-namespace ClassroomSailor.Entities.Common
+namespace ClassroomSailor.Entities.User
 {
     public class ClassroomSailorUserEntity : BaseEntity
     {

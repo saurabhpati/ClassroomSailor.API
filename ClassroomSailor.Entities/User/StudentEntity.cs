@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using ClassroomSailor.Entities.Common;
 using ClassroomSailor.Entities.Subject;
 
-namespace ClassroomSailor.Entities.Student
+namespace ClassroomSailor.Entities.User
 {
     public class StudentEntity : ClassroomSailorUserEntity
     {

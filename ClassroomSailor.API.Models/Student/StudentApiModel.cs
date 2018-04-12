@@ -1,5 +1,5 @@
 ﻿using System;
-using ClassroomSailor.Entities.Student;
+using ClassroomSailor.Entities.User;
 
 namespace ClassroomSailor.API.Models.Student
 {

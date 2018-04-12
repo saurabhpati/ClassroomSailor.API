@@ -1,6 +1,5 @@
-﻿using ClassroomSailor.Entities.Student;
-using ClassroomSailor.Entities.Subject;
-using ClassroomSailor.Entities.Teacher;
+﻿using ClassroomSailor.Entities.Subject;
+using ClassroomSailor.Entities.User;
 using Microsoft.EntityFrameworkCore;
 
 namespace ClassroomSailor.Repositories

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using ClassroomSailor.Entities.Common;
+using ClassroomSailor.Entities.User;
 using ClassroomSailor.Repositories.Common;
 
 namespace ClassroomSailor.Repositories.User

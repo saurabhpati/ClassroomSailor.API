@@ -1,6 +1,4 @@
-﻿using ClassroomSailor.Entities.Common;
-using ClassroomSailor.Entities.Student;
-using ClassroomSailor.Entities.Teacher;
+﻿using ClassroomSailor.Entities.User;
 using ClassroomSailor.Repositories.User;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

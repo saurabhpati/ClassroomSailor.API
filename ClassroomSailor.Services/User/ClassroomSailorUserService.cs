@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ClassroomSailor.Entities.Common;
+using ClassroomSailor.Entities.User;
 using ClassroomSailor.Repositories.User;
 
 namespace ClassroomSailor.Services.User

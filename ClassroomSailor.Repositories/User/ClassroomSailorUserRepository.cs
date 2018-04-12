@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ClassroomSailor.Entities.Common;
-using ClassroomSailor.Entities.Teacher;
+using ClassroomSailor.Entities.User;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace ClassroomSailor.Repositories.User

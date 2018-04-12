@@ -1,6 +1,4 @@
-﻿using ClassroomSailor.Entities.Common;
-using ClassroomSailor.Entities.Student;
-using ClassroomSailor.Entities.Teacher;
+﻿using ClassroomSailor.Entities.User;
 using ClassroomSailor.Services.User;
 using Microsoft.Extensions.DependencyInjection;
 

@@ -5,7 +5,7 @@ using ClassroomSailor.Entities.Common;
 
 namespace ClassroomSailor.Services.Common
 {
-    public interface IService<T> where T : BaseEntity
+    public interface IService<T> where T : IBaseEntity
     {
         Task<T> GetByIdAsync(Int64 id);
 

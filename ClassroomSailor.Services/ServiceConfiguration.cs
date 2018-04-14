@@ -14,7 +14,7 @@ namespace ClassroomSailor.Services
 
         private static void ConfigureUserServices<T>(IServiceCollection services) where T: ClassroomSailorUserEntity
         {
-            services.AddSingleton<IClassroomSailorUserService<T>, ClassroomSailorUserService<T>>();
+            services.AddScoped<IClassroomSailorUserService<T>, ClassroomSailorUserService<T>>();
         }
     }
 }

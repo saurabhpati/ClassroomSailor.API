@@ -1,7 +1,11 @@
-﻿using ClassroomSailor.Repositories;
+﻿using ClassroomSailor.API.Models.User;
+using ClassroomSailor.Repositories;
+using ClassroomSailor.Repositories.User;
 using ClassroomSailor.Services;
+using ClassroomSailor.Services.User;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,6 +24,12 @@ namespace ClassroomSailor.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDbContext<ClassroomSailorDbContext>(options =>
+                options.UseSqlServer(this.Configuration.GetConnectionString("Default")));
+            services.AddScoped<IClassroomSailorUserService<StudentApiModel>, ClassroomSailorUserService<StudentApiModel>>();
+            services.AddScoped<IClassroomSailorUserService<TeacherApiModel>, ClassroomSailorUserService<TeacherApiModel>>();
+            services.AddScoped<IClassroomSailorUserRepository<TeacherApiModel>, TeacherRepository<TeacherApiModel>>();
+            services.AddScoped<IClassroomSailorUserRepository<StudentApiModel>, StudentRepository<StudentApiModel>>();
             RepositoryConfiguration.Configure(services, this.Configuration);
             ServiceConfiguration.Configure(services);
         }

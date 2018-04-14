@@ -3,7 +3,7 @@ using ClassroomSailor.Entities.User;
 
 namespace ClassroomSailor.API.Models.User
 {
-    public class ClassroomSailorUserApiModel : ClassroomSailorUserEntity, IApiModel
+    public interface IClassroomSailorUserApiModel :  IApiModel, IClassroomSailorUserEntity
     {
     }
 }

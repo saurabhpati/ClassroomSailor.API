@@ -1,4 +1,5 @@
 ﻿using ClassroomSailor.API.Models.User;
+using ClassroomSailor.Entities.Factories;
 using ClassroomSailor.Repositories;
 using ClassroomSailor.Repositories.User;
 using ClassroomSailor.Services;
@@ -30,6 +31,8 @@ namespace ClassroomSailor.API
             services.AddScoped<IClassroomSailorUserService<TeacherApiModel>, ClassroomSailorUserService<TeacherApiModel>>();
             services.AddScoped<IClassroomSailorUserRepository<TeacherApiModel>, TeacherRepository<TeacherApiModel>>();
             services.AddScoped<IClassroomSailorUserRepository<StudentApiModel>, StudentRepository<StudentApiModel>>();
+            services.AddScoped<ITeacherEntityFactory<TeacherApiModel>, TeacherEntityFactory<TeacherApiModel>>();
+            //services.AddScoped<IClassroomSailorUserEntityFactory<StudentEntity>, StudentEntityFactory<StudentEntity>>();
             RepositoryConfiguration.Configure(services, this.Configuration);
             ServiceConfiguration.Configure(services);
         }

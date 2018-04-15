@@ -2,14 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ClassroomSailor.Entities.Factories;
 using ClassroomSailor.Entities.User;
 
 namespace ClassroomSailor.Repositories.User
 {
     public class TeacherRepository<T> : ClassroomSailorUserRepository<T> where T : TeacherEntity
     {
-        public TeacherRepository(ClassroomSailorDbContext context) : base(context)
+        private readonly ITeacherEntityFactory<T> _entityFactory;
+        private Action<TeacherEntity, T> converter = (teacherEntity, createdEntity) =>
         {
+            createdEntity.Id = teacherEntity.Id;
+            createdEntity.Email = teacherEntity.Email;
+            createdEntity.FirstName = teacherEntity.FirstName;
+            createdEntity.MiddleName = teacherEntity.MiddleName;
+            createdEntity.LastName = teacherEntity.LastName;
+            createdEntity.Subjects = teacherEntity.Subjects;
+            createdEntity.BirthDate = teacherEntity.BirthDate;
+            createdEntity.ContactNumber = teacherEntity.ContactNumber;
+            createdEntity.JoiningDate = teacherEntity.JoiningDate;
+        };
+
+        public TeacherRepository(ClassroomSailorDbContext context, ITeacherEntityFactory<T> entityFactory) : base(context)
+        {
+            this._entityFactory = entityFactory;
         }
 
         public override async Task<IEnumerable<T>> GetAllAsync()
@@ -34,9 +50,10 @@ namespace ClassroomSailor.Repositories.User
         {
             using (this.Database)
             {
-                TeacherEntity entity2 = await this.Database.Teachers.FindAsync(id);
-                T entity = await this.Database.Teachers.FindAsync(id) as T;
-                return entity;
+                TeacherEntity entity = await this.Database.Teachers.FindAsync(id);
+                T createdEntity = this._entityFactory.GetTeacher() as T;
+                converter(entity, createdEntity);
+                return createdEntity;
             }
         }
     }

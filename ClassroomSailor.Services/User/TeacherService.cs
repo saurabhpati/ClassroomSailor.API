@@ -11,14 +11,15 @@ namespace ClassroomSailor.Services.User
     {
         private readonly IClassroomSailorUserRepository<TeacherEntity> _repository;
         private readonly ITeacherEntityFactory<T> _teacherFactory;
-        private readonly Action<TeacherEntity, T> _converter;
+        private readonly Func<TeacherEntity, T> _converter;
 
         public TeacherService(IClassroomSailorUserRepository<TeacherEntity> repository, ITeacherEntityFactory<T> teacherFactory)
         {
             this._repository = repository;
             this._teacherFactory = teacherFactory;
-            this._converter = (teacherEntity, createdEntity) =>
+            this._converter = (teacherEntity) =>
             {
+                T createdEntity = this._teacherFactory.GetTeacher() as T;
                 createdEntity.Id = teacherEntity.Id;
                 createdEntity.Email = teacherEntity.Email;
                 createdEntity.FirstName = teacherEntity.FirstName;
@@ -28,6 +29,7 @@ namespace ClassroomSailor.Services.User
                 createdEntity.BirthDate = teacherEntity.BirthDate;
                 createdEntity.ContactNumber = teacherEntity.ContactNumber;
                 createdEntity.JoiningDate = teacherEntity.JoiningDate;
+                return createdEntity;
             };
         }
 
@@ -53,10 +55,7 @@ namespace ClassroomSailor.Services.User
 
         public async Task<T> GetByIdAsync(long id)
         {
-            TeacherEntity entity = await this._repository.GetByIdAsync(id);
-            T createdEntity = this._teacherFactory.GetTeacher() as T;
-            this._converter(entity, createdEntity);
-            return createdEntity;
+            return this._converter(await this._repository.GetByIdAsync(id));
         }
 
         public Task<T> UpdateAsync(T entity)

@@ -6,33 +6,33 @@ using ClassroomSailor.Entities.User;
 
 namespace ClassroomSailor.Repositories.User
 {
-    public class StudentRepository<T> : ClassroomSailorUserRepository<T> where T : StudentEntity
+    public class StudentRepository : ClassroomSailorUserRepository<StudentEntity>
     {
         public StudentRepository(ClassroomSailorDbContext context) : base(context)
         {
         }
 
-        public override async Task<IEnumerable<T>> GetAllAsync()
+        public override async Task<IEnumerable<StudentEntity>> GetAllAsync()
         {
             using (this.Database)
             {
-                return await Task.FromResult(this.Database.Students as IQueryable<T>);
+                return await Task.FromResult(this.Database.Students as IQueryable<StudentEntity>);
             }
         }
 
-        public override async Task<T> GetByEmailAsync(String email)
+        public override async Task<StudentEntity> GetByEmailAsync(String email)
         {
             using (this.Database)
             {
-                return await Task.FromResult(this.Database.Students.FirstOrDefault(student => String.Compare(student.Email, email, StringComparison.OrdinalIgnoreCase) == 0) as T);
+                return await Task.FromResult(this.Database.Students.FirstOrDefault(student => String.Compare(student.Email, email, StringComparison.OrdinalIgnoreCase) == 0));
             }
         }
 
-        public override async Task<T> GetByIdAsync(Int64 id)
+        public override async Task<StudentEntity> GetByIdAsync(Int64 id)
         {
             using (this.Database)
             {
-                return await this.Database.Students.FindAsync(id) as T;
+                return await this.Database.Students.FindAsync(id);
             }
         }
     }

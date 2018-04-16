@@ -1,7 +1,6 @@
 ﻿using ClassroomSailor.API.Models.User;
 using ClassroomSailor.Entities.Factories;
 using ClassroomSailor.Repositories;
-using ClassroomSailor.Repositories.User;
 using ClassroomSailor.Services;
 using ClassroomSailor.Services.User;
 using Microsoft.AspNetCore.Builder;
@@ -27,10 +26,10 @@ namespace ClassroomSailor.API
             services.AddMvc();
             services.AddDbContext<ClassroomSailorDbContext>(options =>
                 options.UseSqlServer(this.Configuration.GetConnectionString("Default")));
-            services.AddScoped<IClassroomSailorUserService<StudentApiModel>, ClassroomSailorUserService<StudentApiModel>>();
-            services.AddScoped<IClassroomSailorUserService<TeacherApiModel>, TeacherService<TeacherApiModel>>();
-            services.AddScoped<IClassroomSailorUserRepository<StudentApiModel>, StudentRepository<StudentApiModel>>();
             services.AddScoped<ITeacherEntityFactory<TeacherApiModel>, TeacherEntityFactory<TeacherApiModel>>();
+            services.AddScoped<IStudentEntityFactory<StudentApiModel>, StudentEntityFactory<StudentApiModel>>();
+            services.AddScoped<IClassroomSailorUserService<StudentApiModel>, StudentService<StudentApiModel>>();
+            services.AddScoped<IClassroomSailorUserService<TeacherApiModel>, TeacherService<TeacherApiModel>>();
             //services.AddScoped<IClassroomSailorUserEntityFactory<StudentEntity>, StudentEntityFactory<StudentEntity>>();
             RepositoryConfiguration.Configure(services);
             ServiceConfiguration.Configure(services);

@@ -30,7 +30,6 @@ namespace ClassroomSailor.API
             services.AddScoped<IStudentEntityFactory<StudentApiModel>, StudentEntityFactory<StudentApiModel>>();
             services.AddScoped<IClassroomSailorUserService<StudentApiModel>, StudentService<StudentApiModel>>();
             services.AddScoped<IClassroomSailorUserService<TeacherApiModel>, TeacherService<TeacherApiModel>>();
-            //services.AddScoped<IClassroomSailorUserEntityFactory<StudentEntity>, StudentEntityFactory<StudentEntity>>();
             RepositoryConfiguration.Configure(services);
             ServiceConfiguration.Configure(services);
         }

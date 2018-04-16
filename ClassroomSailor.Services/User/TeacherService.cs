@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ClassroomSailor.Entities.Factories;
 using ClassroomSailor.Entities.User;
@@ -43,14 +44,17 @@ namespace ClassroomSailor.Services.User
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            List<TeacherEntity> teacherEntities = (await this._repository.GetAllAsync()).ToList();
+            List<T> entities = new List<T>();
+            teacherEntities.ForEach(entity => entities.Add(this._converter(entity)));
+            return entities;
         }
 
-        public Task<T> GetByEmailAsync(string email)
+        public async Task<T> GetByEmailAsync(string email)
         {
-            throw new NotImplementedException();
+            return this._converter(await this._repository.GetByEmailAsync(email));
         }
 
         public async Task<T> GetByIdAsync(long id)

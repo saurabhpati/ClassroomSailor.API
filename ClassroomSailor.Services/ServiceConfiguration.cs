@@ -8,13 +8,8 @@ namespace ClassroomSailor.Services
     {
         public static void Configure(IServiceCollection services)
         {
-            ConfigureUserServices<StudentEntity>(services);
-            ConfigureUserServices<TeacherEntity>(services);
-        }
-
-        private static void ConfigureUserServices<T>(IServiceCollection services) where T: ClassroomSailorUserEntity
-        {
-            services.AddScoped<IClassroomSailorUserService<T>, ClassroomSailorUserService<T>>();
+            services.AddScoped<IClassroomSailorUserService<StudentEntity>, ClassroomSailorUserService<StudentEntity>>();
+            services.AddScoped<IClassroomSailorUserService<TeacherEntity>, TeacherService<TeacherEntity>>();
         }
     }
 }

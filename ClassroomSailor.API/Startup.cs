@@ -28,12 +28,11 @@ namespace ClassroomSailor.API
             services.AddDbContext<ClassroomSailorDbContext>(options =>
                 options.UseSqlServer(this.Configuration.GetConnectionString("Default")));
             services.AddScoped<IClassroomSailorUserService<StudentApiModel>, ClassroomSailorUserService<StudentApiModel>>();
-            services.AddScoped<IClassroomSailorUserService<TeacherApiModel>, ClassroomSailorUserService<TeacherApiModel>>();
-            services.AddScoped<IClassroomSailorUserRepository<TeacherApiModel>, TeacherRepository<TeacherApiModel>>();
+            services.AddScoped<IClassroomSailorUserService<TeacherApiModel>, TeacherService<TeacherApiModel>>();
             services.AddScoped<IClassroomSailorUserRepository<StudentApiModel>, StudentRepository<StudentApiModel>>();
             services.AddScoped<ITeacherEntityFactory<TeacherApiModel>, TeacherEntityFactory<TeacherApiModel>>();
             //services.AddScoped<IClassroomSailorUserEntityFactory<StudentEntity>, StudentEntityFactory<StudentEntity>>();
-            RepositoryConfiguration.Configure(services, this.Configuration);
+            RepositoryConfiguration.Configure(services);
             ServiceConfiguration.Configure(services);
         }
 

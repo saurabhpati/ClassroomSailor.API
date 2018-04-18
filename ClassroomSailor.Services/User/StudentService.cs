@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ClassroomSailor.Entities.Factories;
 using ClassroomSailor.Entities.User;
@@ -34,24 +35,27 @@ namespace ClassroomSailor.Services.User
             };
         }
 
-        public Task<T> AddAsync(T entity)
+        public async Task<T> AddAsync(T entity)
         {
-            throw new NotImplementedException();
+            return this._converter(await this._repository.AddAsync(entity));
         }
 
-        public Task<T> DeleteAsync(long id)
+        public async Task<T> DeleteAsync(long id)
         {
-            throw new NotImplementedException();
+            return this._converter(await this._repository.DeleteAsync(id));
         }
 
-        public Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            List<StudentEntity> students = (await this._repository.GetAllAsync()).ToList();
+            List<T> entities = new List<T>();
+            students.ForEach(student => entities.Add(this._converter(student)));
+            return entities;
         }
 
-        public Task<T> GetByEmailAsync(string email)
+        public async Task<T> GetByEmailAsync(string email)
         {
-            throw new NotImplementedException();
+            return this._converter(await this._repository.GetByEmailAsync(email));
         }
 
         public async Task<T> GetByIdAsync(long id)
@@ -59,9 +63,9 @@ namespace ClassroomSailor.Services.User
             return this._converter(await this._repository.GetByIdAsync(id));
         }
 
-        public Task<T> UpdateAsync(T entity)
+        public async Task<T> UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            return this._converter(await this._repository.UpdateAsync(entity));
         }
     }
 }

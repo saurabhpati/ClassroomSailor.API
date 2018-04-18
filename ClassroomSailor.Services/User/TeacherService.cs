@@ -36,12 +36,12 @@ namespace ClassroomSailor.Services.User
 
         public async Task<T> AddAsync(T entity)
         {
-            throw new NotImplementedException();
+            return this._converter(await this._repository.AddAsync(entity));
         }
 
-        public Task<T> DeleteAsync(long id)
+        public async Task<T> DeleteAsync(long id)
         {
-            throw new NotImplementedException();
+            return this._converter(await this._repository.DeleteAsync(id));
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
@@ -62,9 +62,9 @@ namespace ClassroomSailor.Services.User
             return this._converter(await this._repository.GetByIdAsync(id));
         }
 
-        public Task<T> UpdateAsync(T entity)
+        public async Task<T> UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            return this._converter(await this._repository.UpdateAsync(entity));
         }
     }
 }

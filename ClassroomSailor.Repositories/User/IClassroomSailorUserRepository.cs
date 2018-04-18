@@ -5,7 +5,7 @@ using ClassroomSailor.Repositories.Common;
 
 namespace ClassroomSailor.Repositories.User
 {
-    public interface IClassroomSailorUserRepository<T> : IRepository<T> where T : ClassroomSailorUserEntity
+    public interface IClassroomSailorUserRepository<T> : IRepository<T> where T : IClassroomSailorUserEntity
     {
         Task<T> GetByEmailAsync(String email);
     }

@@ -5,7 +5,7 @@ using ClassroomSailor.Services.Common;
 
 namespace ClassroomSailor.Services.User
 {
-    public interface IClassroomSailorUserService<T> : IService<T> where T : ClassroomSailorUserEntity
+    public interface IClassroomSailorUserService<T> : IService<T> where T : IClassroomSailorUserEntity
     {
         Task<T> GetByEmailAsync(String email);
     }

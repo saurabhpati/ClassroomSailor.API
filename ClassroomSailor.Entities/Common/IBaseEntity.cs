@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ClassroomSailor.Entities.Common
 {
-    public class BaseEntity
+    public interface IBaseEntity
     {
         [Key]
-        public Int64 Id { get; set; }
+        Int64 Id { get; set; }
     }
 }

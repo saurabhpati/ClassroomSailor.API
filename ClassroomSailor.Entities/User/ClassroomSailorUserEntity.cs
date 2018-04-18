@@ -4,8 +4,11 @@ using ClassroomSailor.Entities.Common;
 
 namespace ClassroomSailor.Entities.User
 {
-    public class ClassroomSailorUserEntity : BaseEntity
+    public class ClassroomSailorUserEntity : IBaseEntity, IClassroomSailorUserEntity
     {
+        [Key]
+        public Int64 Id { get; set; }
+
         [Required(ErrorMessage = "First name is required")]
         [StringLength(255, ErrorMessage = "First name cannot be more than 255 characters.")]
         public String FirstName { get; set; }

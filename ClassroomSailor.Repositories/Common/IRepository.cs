@@ -5,7 +5,7 @@ using ClassroomSailor.Entities.Common;
 
 namespace ClassroomSailor.Repositories.Common
 {
-    public interface IRepository<T> where T : BaseEntity
+    public interface IRepository<T> where T : IBaseEntity
     {
         Task<T> GetByIdAsync(Int64 id);
 

@@ -7,32 +7,33 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ClassroomSailor.API.Controllers.User
 {
-    public class ClassroomSailorUserController<T> : Controller where T : ClassroomSailorUserApiModel
+    [Route("v1/api/[controller]")]
+    public class ClassroomSailorUserController<T> : Controller where T : IClassroomSailorUserApiModel
     {
         public ClassroomSailorUserController(IClassroomSailorUserService<T> service)
         {
             this.Service = service;
         }
 
-        protected IClassroomSailorUserService<T> Service { get; set; }
+        protected IClassroomSailorUserService<T> Service { get; private set; }
 
         #region Get
 
-        [Route("{id}")]
-        public virtual async Task<IActionResult> GetAsync(int id)
+        [Route("{id:int}")]
+        public async Task<IActionResult> Get(Int64 id)
         {
             T entity = await this.Service.GetByIdAsync(id);
             return new JsonResult(entity);
         }
 
         [Route("{email}")]
-        public virtual async Task<IActionResult> GetAsync(string email)
+        public async Task<IActionResult> Get(String email)
         {
             T entity = await this.Service.GetByEmailAsync(email);
             return new JsonResult(entity);
         }
 
-        public async Task<IActionResult> GetAsync()
+        public async Task<IActionResult> Get()
         {
             IEnumerable<T> entity = await this.Service.GetAllAsync();
             return new JsonResult(entity);
@@ -44,14 +45,14 @@ namespace ClassroomSailor.API.Controllers.User
 
         [HttpPost]
         [Route("Create")]
-        public virtual async Task<IActionResult> PostAsync([FromBody]T student)
+        public virtual async Task<IActionResult> PostAsync([FromBody]T model)
         {
-            if (student == null)
+            if (model == null)
             {
-                return null;
+                return new JsonResult(null);
             }
 
-            T entity = await this.Service.AddAsync(student);
+            T entity = await this.Service.AddAsync(model);
             return new JsonResult(entity);
         }
 
@@ -61,14 +62,14 @@ namespace ClassroomSailor.API.Controllers.User
 
         [HttpPut]
         [Route("Update")]
-        public virtual async Task<IActionResult> UpdateAsync([FromBody]T student)
+        public virtual async Task<IActionResult> UpdateAsync([FromBody]T model)
         {
-            if (student == null)
+            if (model == null)
             {
-                return null;
+                return new JsonResult(null);
             }
 
-            T entity = await this.Service.UpdateAsync(student);
+            T entity = await this.Service.UpdateAsync(model);
             return new JsonResult(entity);
         }
 

@@ -1,6 +1,8 @@
-﻿namespace ClassroomSailor.API.Models.Common
+﻿using ClassroomSailor.Entities.Common;
+
+namespace ClassroomSailor.API.Models.Common
 {
-    public interface IApiModel
+    public interface IApiModel : IBaseEntity
     {
     }
 }

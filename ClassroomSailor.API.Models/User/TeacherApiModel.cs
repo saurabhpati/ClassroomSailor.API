@@ -1,6 +1,8 @@
-﻿namespace ClassroomSailor.API.Models.User
+﻿using ClassroomSailor.Entities.User;
+
+namespace ClassroomSailor.API.Models.User
 {
-    public class TeacherApiModel : ClassroomSailorUserApiModel
+    public class TeacherApiModel : TeacherEntity, IClassroomSailorUserApiModel
     {
     }
 }

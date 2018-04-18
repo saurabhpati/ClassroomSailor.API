@@ -1,4 +1,5 @@
-﻿using ClassroomSailor.Entities.User;
+﻿using ClassroomSailor.Entities.Factories;
+using ClassroomSailor.Entities.User;
 using ClassroomSailor.Services.User;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,13 +9,10 @@ namespace ClassroomSailor.Services
     {
         public static void Configure(IServiceCollection services)
         {
-            ConfigureUserServices<StudentEntity>(services);
-            ConfigureUserServices<TeacherEntity>(services);
-        }
-
-        private static void ConfigureUserServices<T>(IServiceCollection services) where T: ClassroomSailorUserEntity
-        {
-            services.AddSingleton<IClassroomSailorUserService<T>, ClassroomSailorUserService<T>>();
+            services.AddScoped<ITeacherEntityFactory<TeacherEntity>, TeacherEntityFactory<TeacherEntity>>();
+            services.AddScoped<IStudentEntityFactory<StudentEntity>, StudentEntityFactory<StudentEntity>>();
+            services.AddScoped<IClassroomSailorUserService<StudentEntity>, StudentService<StudentEntity>>();
+            services.AddScoped<IClassroomSailorUserService<TeacherEntity>, TeacherService<TeacherEntity>>();
         }
     }
 }

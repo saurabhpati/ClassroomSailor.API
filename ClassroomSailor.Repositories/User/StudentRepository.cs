@@ -3,36 +3,71 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ClassroomSailor.Entities.User;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace ClassroomSailor.Repositories.User
 {
-    public class StudentRepository : ClassroomSailorUserRepository<StudentEntity>
+    public class StudentRepository : IClassroomSailorUserRepository<StudentEntity>
     {
-        public StudentRepository(ClassroomSailorDbContext context) : base(context)
+        private readonly ClassroomSailorDbContext _database;
+
+        public StudentRepository(ClassroomSailorDbContext context)
         {
+            this._database = context;
         }
 
-        public override async Task<IEnumerable<StudentEntity>> GetAllAsync()
+        public async Task<StudentEntity> AddAsync(StudentEntity entity)
         {
-            using (this.Database)
+            using (this._database)
             {
-                return await Task.FromResult(this.Database.Students as IQueryable<StudentEntity>);
+                EntityEntry<StudentEntity> addedEntry = await this._database.AddAsync(entity);
+                await this._database.SaveChangesAsync();
+                return addedEntry.Entity;
             }
         }
 
-        public override async Task<StudentEntity> GetByEmailAsync(String email)
+        public async Task<StudentEntity> DeleteAsync(long id)
         {
-            using (this.Database)
+            using (this._database)
             {
-                return await Task.FromResult(this.Database.Students.FirstOrDefault(student => String.Compare(student.Email, email, StringComparison.OrdinalIgnoreCase) == 0));
+                StudentEntity deleteEntity = await this._database.FindAsync<StudentEntity>(id);
+                EntityEntry<StudentEntity> entry = this._database.Remove<StudentEntity>(deleteEntity);
+                await this._database.SaveChangesAsync();
+                return entry.Entity;
             }
         }
 
-        public override async Task<StudentEntity> GetByIdAsync(Int64 id)
+        public async Task<IEnumerable<StudentEntity>> GetAllAsync()
         {
-            using (this.Database)
+            using (this._database)
             {
-                return await this.Database.Students.FindAsync(id);
+                return await Task.FromResult(this._database.Students as IQueryable<StudentEntity>);
+            }
+        }
+
+        public async Task<StudentEntity> GetByEmailAsync(String email)
+        {
+            using (this._database)
+            {
+                return await Task.FromResult(this._database.Students.FirstOrDefault(student => String.Compare(student.Email, email, StringComparison.OrdinalIgnoreCase) == 0));
+            }
+        }
+
+        public async Task<StudentEntity> GetByIdAsync(Int64 id)
+        {
+            using (this._database)
+            {
+                return await this._database.Students.FindAsync(id);
+            }
+        }
+
+        public async Task<StudentEntity> UpdateAsync(StudentEntity entity)
+        {
+            using (this._database)
+            {
+                EntityEntry<StudentEntity> entry = this._database.Update<StudentEntity>(entity);
+                await this._database.SaveChangesAsync();
+                return entry.Entity;
             }
         }
     }

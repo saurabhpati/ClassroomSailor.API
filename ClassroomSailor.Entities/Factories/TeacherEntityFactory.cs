@@ -9,9 +9,14 @@ namespace ClassroomSailor.Entities.Factories
             return new T();
         }
 
-        public TeacherEntity GetTeacher()
+        public TeacherEntity GetTeacherModel()
         {
             return new T();
+        }
+
+        public TeacherEntity GetTeacherEntity()
+        {
+            return new TeacherEntity();
         }
     }
 }

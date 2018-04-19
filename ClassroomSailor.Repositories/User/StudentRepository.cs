@@ -20,8 +20,8 @@ namespace ClassroomSailor.Repositories.User
         {
             using (this._database)
             {
-                EntityEntry<StudentEntity> addedEntry = await this._database.AddAsync(entity);
-                await this._database.SaveChangesAsync();
+                EntityEntry<StudentEntity> addedEntry = await this._database.AddAsync(entity).ConfigureAwait(false);
+                await this._database.SaveChangesAsync().ConfigureAwait(false);
                 return addedEntry.Entity;
             }
         }
@@ -30,9 +30,9 @@ namespace ClassroomSailor.Repositories.User
         {
             using (this._database)
             {
-                StudentEntity deleteEntity = await this._database.FindAsync<StudentEntity>(id);
+                StudentEntity deleteEntity = await this._database.FindAsync<StudentEntity>(id).ConfigureAwait(false);
                 EntityEntry<StudentEntity> entry = this._database.Remove<StudentEntity>(deleteEntity);
-                await this._database.SaveChangesAsync();
+                await this._database.SaveChangesAsync().ConfigureAwait(false);
                 return entry.Entity;
             }
         }
@@ -41,7 +41,7 @@ namespace ClassroomSailor.Repositories.User
         {
             using (this._database)
             {
-                return await Task.FromResult(this._database.Students as IQueryable<StudentEntity>);
+                return await Task.FromResult(this._database.Students as IQueryable<StudentEntity>).ConfigureAwait(false);
             }
         }
 
@@ -49,7 +49,7 @@ namespace ClassroomSailor.Repositories.User
         {
             using (this._database)
             {
-                return await Task.FromResult(this._database.Students.FirstOrDefault(student => String.Compare(student.Email, email, StringComparison.OrdinalIgnoreCase) == 0));
+                return await Task.FromResult(this._database.Students.FirstOrDefault(student => String.Compare(student.Email, email, StringComparison.OrdinalIgnoreCase) == 0)).ConfigureAwait(false);
             }
         }
 
@@ -57,7 +57,7 @@ namespace ClassroomSailor.Repositories.User
         {
             using (this._database)
             {
-                return await this._database.Students.FindAsync(id);
+                return await this._database.Students.FindAsync(id).ConfigureAwait(false);
             }
         }
 
@@ -66,7 +66,7 @@ namespace ClassroomSailor.Repositories.User
             using (this._database)
             {
                 EntityEntry<StudentEntity> entry = this._database.Update<StudentEntity>(entity);
-                await this._database.SaveChangesAsync();
+                await this._database.SaveChangesAsync().ConfigureAwait(false);
                 return entry.Entity;
             }
         }

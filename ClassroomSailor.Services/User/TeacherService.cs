@@ -51,17 +51,17 @@ namespace ClassroomSailor.Services.User
 
         public async Task<T> AddAsync(T entity)
         {
-            return this._backwardConverter(await this._repository.AddAsync(this._forwardConverter(entity)));
+            return this._backwardConverter(await this._repository.AddAsync(this._forwardConverter(entity)).ConfigureAwait(false));
         }
 
         public async Task<T> DeleteAsync(long id)
         {
-            return this._backwardConverter(await this._repository.DeleteAsync(id));
+            return this._backwardConverter(await this._repository.DeleteAsync(id).ConfigureAwait(false));
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            List<TeacherEntity> teacherEntities = (await this._repository.GetAllAsync()).ToList();
+            List<TeacherEntity> teacherEntities = (await this._repository.GetAllAsync().ConfigureAwait(false)).ToList();
             List<T> entities = new List<T>();
             teacherEntities.ForEach(entity => entities.Add(this._backwardConverter(entity)));
             return entities;
@@ -69,17 +69,17 @@ namespace ClassroomSailor.Services.User
 
         public async Task<T> GetByEmailAsync(string email)
         {
-            return this._backwardConverter(await this._repository.GetByEmailAsync(email));
+            return this._backwardConverter(await this._repository.GetByEmailAsync(email).ConfigureAwait(false));
         }
 
         public async Task<T> GetByIdAsync(long id)
         {
-            return this._backwardConverter(await this._repository.GetByIdAsync(id));
+            return this._backwardConverter(await this._repository.GetByIdAsync(id).ConfigureAwait(false));
         }
 
         public async Task<T> UpdateAsync(T entity)
         {
-            return this._backwardConverter(await this._repository.UpdateAsync(this._backwardConverter(entity)));
+            return this._backwardConverter(await this._repository.UpdateAsync(this._backwardConverter(entity)).ConfigureAwait(false));
         }
     }
 }

@@ -22,20 +22,20 @@ namespace ClassroomSailor.API.Controllers.User
         [Route("{id:int}")]
         public async Task<IActionResult> Get(Int64 id)
         {
-            T entity = await this.Service.GetByIdAsync(id);
+            T entity = await this.Service.GetByIdAsync(id).ConfigureAwait(false);
             return new JsonResult(entity);
         }
 
         [Route("{email}")]
         public async Task<IActionResult> Get(String email)
         {
-            T entity = await this.Service.GetByEmailAsync(email);
+            T entity = await this.Service.GetByEmailAsync(email).ConfigureAwait(false);
             return new JsonResult(entity);
         }
 
         public async Task<IActionResult> Get()
         {
-            IEnumerable<T> entity = await this.Service.GetAllAsync();
+            IEnumerable<T> entity = await this.Service.GetAllAsync().ConfigureAwait(false);
             return new JsonResult(entity);
         }
 
@@ -52,7 +52,7 @@ namespace ClassroomSailor.API.Controllers.User
                 return new JsonResult(null);
             }
 
-            T entity = await this.Service.AddAsync(model);
+            T entity = await this.Service.AddAsync(model).ConfigureAwait(false);
             return new JsonResult(entity);
         }
 
@@ -69,7 +69,7 @@ namespace ClassroomSailor.API.Controllers.User
                 return new JsonResult(null);
             }
 
-            T entity = await this.Service.UpdateAsync(model);
+            T entity = await this.Service.UpdateAsync(model).ConfigureAwait(false);
             return new JsonResult(entity);
         }
 
@@ -86,7 +86,7 @@ namespace ClassroomSailor.API.Controllers.User
                 return null;
             }
 
-            T entity = await this.Service.DeleteAsync(id);
+            T entity = await this.Service.DeleteAsync(id).ConfigureAwait(false);
             return new JsonResult(entity);
         }
 

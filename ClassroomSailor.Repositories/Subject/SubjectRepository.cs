@@ -28,26 +28,38 @@ namespace ClassroomSailor.Repositories.Subject
 
         public async Task<SubjectEntity> DeleteAsync(long id)
         {
-            SubjectEntity entity = await this._database.Subjects.FindAsync(id).ConfigureAwait(false);
-            EntityEntry<SubjectEntity> entry = this._database.Subjects.Remove(entity);
-            await this._database.SaveChangesAsync().ConfigureAwait(false);
-            return entry.Entity;
+            using (this._database)
+            {
+                SubjectEntity entity = await this._database.Subjects.FindAsync(id).ConfigureAwait(false);
+                EntityEntry<SubjectEntity> entry = this._database.Subjects.Remove(entity);
+                await this._database.SaveChangesAsync().ConfigureAwait(false);
+                return entry.Entity;
+            }
         }
 
         public async Task<IEnumerable<SubjectEntity>> GetAllAsync()
         {
-            return await Task.FromResult(this._database.Subjects).ConfigureAwait(false) as IQueryable<SubjectEntity>;
+            using (this._database)
+            {
+                return await Task.FromResult(this._database.Subjects).ConfigureAwait(false) as IQueryable<SubjectEntity>;
+            }
         }
 
         public async Task<SubjectEntity> GetByIdAsync(long id)
         {
-            return await this._database.Subjects.FindAsync(id).ConfigureAwait(false);
+            using (this._database)
+            {
+                return await this._database.Subjects.FindAsync(id).ConfigureAwait(false);
+            }
         }
 
         public async Task<SubjectEntity> UpdateAsync(SubjectEntity entity)
         {
-            EntityEntry<SubjectEntity> entry = this._database.Update<SubjectEntity>(entity);
-            return await Task.FromResult(entry.Entity).ConfigureAwait(false);
+            using (this._database)
+            {
+                EntityEntry<SubjectEntity> entry = this._database.Update<SubjectEntity>(entity);
+                return await Task.FromResult(entry.Entity).ConfigureAwait(false);
+            }
         }
     }
 }

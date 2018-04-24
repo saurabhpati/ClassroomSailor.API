@@ -10,7 +10,12 @@ namespace ClassroomSailor.Repositories
         {
         }
 
-        public DbSet<TeacherEntity> Teachers { get; set; }
+        public ClassroomSailorDbContext()
+        {
+
+        }
+
+        public virtual DbSet<TeacherEntity> Teachers { get; set; }
 
         public DbSet<StudentEntity> Students { get; set; }
 

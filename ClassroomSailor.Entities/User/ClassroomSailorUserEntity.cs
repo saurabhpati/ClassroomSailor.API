@@ -1,10 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using ClassroomSailor.Entities.Common;
 
 namespace ClassroomSailor.Entities.User
 {
-    public class ClassroomSailorUserEntity : IBaseEntity, IClassroomSailorUserEntity
+    public class ClassroomSailorUserEntity : IClassroomSailorUserEntity
     {
         [Key]
         public Int64 Id { get; set; }

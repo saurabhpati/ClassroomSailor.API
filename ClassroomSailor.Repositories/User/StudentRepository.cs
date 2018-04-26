@@ -26,7 +26,7 @@ namespace ClassroomSailor.Repositories.User
             }
         }
 
-        public async Task<StudentEntity> DeleteAsync(long id)
+        public async Task<StudentEntity> DeleteAsync(Int64 id)
         {
             using (this._database)
             {

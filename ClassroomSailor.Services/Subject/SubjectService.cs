@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ClassroomSailor.Entities.Factories;
@@ -26,7 +27,7 @@ namespace ClassroomSailor.Services.Subject
             return this.BackwardConverter(addedEntity);
         }
 
-        public async Task<T> DeleteAsync(long id)
+        public async Task<T> DeleteAsync(Int64 id)
         {
             SubjectEntity entity = await this._repository.DeleteAsync(id).ConfigureAwait(false);
             return this.BackwardConverter(entity);
@@ -40,7 +41,7 @@ namespace ClassroomSailor.Services.Subject
             return entities;
         }
 
-        public async Task<T> GetByIdAsync(long id)
+        public async Task<T> GetByIdAsync(Int64 id)
         {
             SubjectEntity entity = await this._repository.GetByIdAsync(id).ConfigureAwait(false);
             return this.BackwardConverter(entity);

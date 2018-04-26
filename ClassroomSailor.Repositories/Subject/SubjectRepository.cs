@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ClassroomSailor.Entities.Subject;
@@ -26,7 +27,7 @@ namespace ClassroomSailor.Repositories.Subject
             }
         }
 
-        public async Task<SubjectEntity> DeleteAsync(long id)
+        public async Task<SubjectEntity> DeleteAsync(Int64 id)
         {
             using (this._database)
             {
@@ -45,7 +46,7 @@ namespace ClassroomSailor.Repositories.Subject
             }
         }
 
-        public async Task<SubjectEntity> GetByIdAsync(long id)
+        public async Task<SubjectEntity> GetByIdAsync(Int64 id)
         {
             using (this._database)
             {

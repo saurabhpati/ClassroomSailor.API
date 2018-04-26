@@ -12,76 +12,76 @@ namespace ClassroomSailor.Services.User
     {
         private readonly IClassroomSailorUserRepository<StudentEntity> _repository;
         private readonly IStudentEntityFactory<T> _studentFactory;
-        private readonly Func<StudentEntity, T> _backwardConverter;
-        private readonly Func<T, StudentEntity> _forwardConverter;
 
         public StudentService(IClassroomSailorUserRepository<StudentEntity> repository, IStudentEntityFactory<T> studentFactory)
         {
             this._repository = repository;
             this._studentFactory = studentFactory;
-            this._backwardConverter = (studentEntity) =>
-            {
-                T createdEntity = this._studentFactory.GetStudentModel() as T;
-                createdEntity.Id = studentEntity.Id;
-                createdEntity.FirstName = studentEntity.FirstName;
-                createdEntity.MiddleName = studentEntity.MiddleName;
-                createdEntity.LastName = studentEntity.LastName;
-                createdEntity.BirthDate = studentEntity.BirthDate;
-                createdEntity.AdmissionNumber = studentEntity.AdmissionNumber;
-                createdEntity.AdmissionDate = studentEntity.AdmissionDate;
-                createdEntity.Email = studentEntity.Email;
-                createdEntity.Grade = studentEntity.Grade;
-                createdEntity.Subjects = studentEntity.Subjects;
-                return createdEntity;
-            };
-            this._forwardConverter = (model) =>
-            {
-                StudentEntity studentEntity = this._studentFactory.GetStudentEntity();
-                studentEntity.Id = model.Id;
-                studentEntity.FirstName = model.FirstName;
-                studentEntity.MiddleName = model.MiddleName;
-                studentEntity.LastName = model.LastName;
-                studentEntity.BirthDate = model.BirthDate;
-                studentEntity.AdmissionNumber = model.AdmissionNumber;
-                studentEntity.AdmissionDate = model.AdmissionDate;
-                studentEntity.Email = model.Email;
-                studentEntity.Grade = model.Grade;
-                studentEntity.Subjects = model.Subjects;
-                return studentEntity;
-            };
         }
 
         public async Task<T> AddAsync(T entity)
         {
-            return this._backwardConverter(await this._repository.AddAsync(this._forwardConverter(entity)).ConfigureAwait(false));
+            return this.BackwardConverter(await this._repository.AddAsync(this.ForwardConverter(entity)).ConfigureAwait(false));
         }
 
-        public async Task<T> DeleteAsync(long id)
+        public async Task<T> DeleteAsync(Int64 id)
         {
-            return this._backwardConverter(await this._repository.DeleteAsync(id).ConfigureAwait(false));
+            return this.BackwardConverter(await this._repository.DeleteAsync(id).ConfigureAwait(false));
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             List<StudentEntity> students = (await this._repository.GetAllAsync().ConfigureAwait(false)).ToList();
             List<T> entities = new List<T>();
-            students.ForEach(student => entities.Add(this._backwardConverter(student)));
+            students.ForEach(student => entities.Add(this.BackwardConverter(student)));
             return entities;
         }
 
-        public async Task<T> GetByEmailAsync(string email)
+        public async Task<T> GetByEmailAsync(String email)
         {
-            return this._backwardConverter(await this._repository.GetByEmailAsync(email).ConfigureAwait(false));
+            return this.BackwardConverter(await this._repository.GetByEmailAsync(email).ConfigureAwait(false));
         }
 
-        public async Task<T> GetByIdAsync(long id)
+        public async Task<T> GetByIdAsync(Int64 id)
         {
-            return this._backwardConverter(await this._repository.GetByIdAsync(id).ConfigureAwait(false));
+            return this.BackwardConverter(await this._repository.GetByIdAsync(id).ConfigureAwait(false));
         }
 
         public async Task<T> UpdateAsync(T entity)
         {
-            return this._backwardConverter(await this._repository.UpdateAsync(this._forwardConverter(entity)).ConfigureAwait(false));
+            return this.BackwardConverter(await this._repository.UpdateAsync(this.ForwardConverter(entity)).ConfigureAwait(false));
+        }
+
+        private T BackwardConverter(StudentEntity studentEntity)
+        {
+            T createdEntity = this._studentFactory.GetStudentModel() as T;
+            createdEntity.Id = studentEntity.Id;
+            createdEntity.FirstName = studentEntity.FirstName;
+            createdEntity.MiddleName = studentEntity.MiddleName;
+            createdEntity.LastName = studentEntity.LastName;
+            createdEntity.BirthDate = studentEntity.BirthDate;
+            createdEntity.AdmissionNumber = studentEntity.AdmissionNumber;
+            createdEntity.AdmissionDate = studentEntity.AdmissionDate;
+            createdEntity.Email = studentEntity.Email;
+            createdEntity.Grade = studentEntity.Grade;
+            createdEntity.Subjects = studentEntity.Subjects;
+            return createdEntity;
+        }
+
+        private StudentEntity ForwardConverter(T model)
+        {
+            StudentEntity studentEntity = this._studentFactory.GetStudentEntity();
+            studentEntity.Id = model.Id;
+            studentEntity.FirstName = model.FirstName;
+            studentEntity.MiddleName = model.MiddleName;
+            studentEntity.LastName = model.LastName;
+            studentEntity.BirthDate = model.BirthDate;
+            studentEntity.AdmissionNumber = model.AdmissionNumber;
+            studentEntity.AdmissionDate = model.AdmissionDate;
+            studentEntity.Email = model.Email;
+            studentEntity.Grade = model.Grade;
+            studentEntity.Subjects = model.Subjects;
+            return studentEntity;
         }
     }
 }

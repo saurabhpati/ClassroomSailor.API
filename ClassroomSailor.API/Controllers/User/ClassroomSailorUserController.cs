@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ClassroomSailor.API.Controllers.User
 {
     [Route("v1/api/[controller]")]
-    public class ClassroomSailorUserController<T> : Controller where T : IClassroomSailorUserApiModel
+    public class ClassroomSailorUserController<T> : Controller where T : ClassroomSailorUserApiModel
     {
         public ClassroomSailorUserController(IClassroomSailorUserService<T> service)
         {

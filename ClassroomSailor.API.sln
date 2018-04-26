@@ -13,10 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassroomSailor.Services", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassroomSailor.Repositories", "ClassroomSailor.Repositories\ClassroomSailor.Repositories.csproj", "{2613FB51-E954-49A9-B907-5AE9DF7C4B0A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClassroomSailor.Tests", "ClassroomSailor.Tests", "{9C3DFA86-D4AC-44E0-9C6E-CE251A7FD67C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassroomSailor.Repositories.Test", "ClassroomSailor.Repositories.Test\ClassroomSailor.Repositories.Test.csproj", "{18D66666-AE5A-4F0E-B2C8-FA29241EA40C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,16 +39,9 @@ Global
 		{2613FB51-E954-49A9-B907-5AE9DF7C4B0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2613FB51-E954-49A9-B907-5AE9DF7C4B0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2613FB51-E954-49A9-B907-5AE9DF7C4B0A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18D66666-AE5A-4F0E-B2C8-FA29241EA40C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18D66666-AE5A-4F0E-B2C8-FA29241EA40C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18D66666-AE5A-4F0E-B2C8-FA29241EA40C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18D66666-AE5A-4F0E-B2C8-FA29241EA40C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{18D66666-AE5A-4F0E-B2C8-FA29241EA40C} = {9C3DFA86-D4AC-44E0-9C6E-CE251A7FD67C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F7DCDFFC-DDE0-45DF-BE67-4F7D724FC2BC}

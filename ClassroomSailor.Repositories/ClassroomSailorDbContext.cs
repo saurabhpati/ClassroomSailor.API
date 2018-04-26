@@ -1,6 +1,4 @@
-﻿using ClassroomSailor.Entities.Subject;
-using ClassroomSailor.Entities.User;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace ClassroomSailor.Repositories
 {
@@ -9,16 +7,5 @@ namespace ClassroomSailor.Repositories
         public ClassroomSailorDbContext(DbContextOptions<ClassroomSailorDbContext> options) : base(options)
         {
         }
-
-        public ClassroomSailorDbContext()
-        {
-
-        }
-
-        public virtual DbSet<TeacherEntity> Teachers { get; set; }
-
-        public DbSet<StudentEntity> Students { get; set; }
-
-        public DbSet<SubjectEntity> Subjects { get; set; }
     }
 }

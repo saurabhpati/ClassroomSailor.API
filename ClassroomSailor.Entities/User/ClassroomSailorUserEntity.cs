@@ -1,13 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace ClassroomSailor.Entities.User
 {
-    public class ClassroomSailorUserEntity : IClassroomSailorUserEntity
+    public class ClassroomSailorUserEntity : IdentityUser, IClassroomSailorUserEntity
     {
-        [Key]
-        public Int64 Id { get; set; }
-
         [Required(ErrorMessage = "First name is required")]
         [StringLength(255, ErrorMessage = "First name cannot be more than 255 characters.")]
         public String FirstName { get; set; }
@@ -21,14 +19,5 @@ namespace ClassroomSailor.Entities.User
 
         [DataType(DataType.Date, ErrorMessage = "Invalid date of birth")]
         public DateTime BirthDate { get; set; }
-
-        [Required(ErrorMessage = "Email is required")]
-        [DataType(DataType.EmailAddress)]
-        [StringLength(128, ErrorMessage = "Email cannot exceed 128 characters")]
-        public String Email { get; set; }
-
-        [StringLength(16)]
-        [DataType(DataType.PhoneNumber)]
-        public String ContactNumber { get; set; }
     }
 }

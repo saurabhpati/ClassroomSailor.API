@@ -1,6 +1,8 @@
-﻿using ClassroomSailor.Entities.User;
+﻿using ClassroomSailor.Entities.Factories;
+using ClassroomSailor.Entities.User;
 using ClassroomSailor.Repositories;
-using ClassroomSailor.Services;
+using ClassroomSailor.Repositories.User;
+using ClassroomSailor.Services.Account;
 using ClassroomSailor.Services.User;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,6 +36,10 @@ namespace ClassroomSailor.API
             services.AddScoped<UserManager<ClassroomSailorUserEntity>>()
                     .AddScoped<SignInManager<ClassroomSailorUserEntity>>()
                     .AddScoped<IdentityRole>()
+                    .AddScoped<IAccountService<ClassroomSailorUserEntity>, AccountService>()
+                    .AddScoped<IClassroomSailorUserService<ClassroomSailorUserEntity>, ClassroomSailorUserService<ClassroomSailorUserEntity>>()
+                    .AddScoped<IClassroomSailorUserRepository<ClassroomSailorUserEntity>, ClassroomSailorUserRepository>()
+                    .AddScoped<IClassroomSailorUserEntityFactory<ClassroomSailorUserEntity>, ClassroomSailorUserEntityFactory<ClassroomSailorUserEntity>>()
                     .AddTransient<IUserClaimsPrincipalFactory<ClassroomSailorUserEntity>, ClassroomSailorUserClaimsPrincipalFactory>();
         }
 
@@ -46,9 +52,7 @@ namespace ClassroomSailor.API
             }
 
             app.UseMvc()
-                .UseAuthentication();
-               
-
+               .UseAuthentication();
         }
     }
 }

@@ -35,9 +35,6 @@ namespace ClassroomSailor.API
                     .AddScoped<SignInManager<ClassroomSailorUserEntity>>()
                     .AddScoped<IdentityRole>()
                     .AddTransient<IUserClaimsPrincipalFactory<ClassroomSailorUserEntity>, ClassroomSailorUserClaimsPrincipalFactory>();
-                    
-            RepositoryConfiguration.Configure(services);
-            ServiceConfiguration.Configure(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

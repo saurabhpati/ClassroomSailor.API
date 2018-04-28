@@ -1,6 +1,7 @@
 ﻿using ClassroomSailor.Entities.User;
 using ClassroomSailor.Repositories;
 using ClassroomSailor.Services;
+using ClassroomSailor.Services.User;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -23,13 +24,18 @@ namespace ClassroomSailor.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<ClassroomSailorDbContext>(options =>
-                options.UseSqlServer(this.Configuration.GetConnectionString("Default")))
-                .AddIdentityCore<ClassroomSailorUserEntity>(option => option.Lockout.MaxFailedAccessAttempts = 5)
+            services
+                .AddDbContext<ClassroomSailorDbContext>(options =>
+                    options.UseSqlServer(this.Configuration.GetConnectionString("Default")))
+                .AddIdentity<ClassroomSailorUserEntity, IdentityRole>(option => option.Lockout.MaxFailedAccessAttempts = 5)
                 .AddEntityFrameworkStores<ClassroomSailorDbContext>()
-                .AddClaimsPrincipalFactory<ClassroomSailorUserEntity>()
-                .AddRoles<IdentityRole>();
-           
+                .AddDefaultTokenProviders(); ;
+
+            services.AddScoped<UserManager<ClassroomSailorUserEntity>>()
+                    .AddScoped<SignInManager<ClassroomSailorUserEntity>>()
+                    .AddScoped<IdentityRole>()
+                    .AddTransient<IUserClaimsPrincipalFactory<ClassroomSailorUserEntity>, ClassroomSailorUserClaimsPrincipalFactory>();
+                    
             RepositoryConfiguration.Configure(services);
             ServiceConfiguration.Configure(services);
         }
@@ -42,7 +48,10 @@ namespace ClassroomSailor.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseMvc()
+                .UseAuthentication();
+               
+
         }
     }
 }

@@ -9,7 +9,7 @@ namespace ClassroomSailor.Entities.User
         [Required(ErrorMessage = "First name is required")]
         [StringLength(255, ErrorMessage = "First name cannot be more than 255 characters.")]
         public String FirstName { get; set; }
-
+         
         [StringLength(255, ErrorMessage = "Middle name cannot be more than 255 characters")]
         public String MiddleName { get; set; }
 

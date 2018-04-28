@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ClassroomSailor.Entities\ClassroomSailor.Entities.csproj" />
     <ProjectReference Include="..\ClassroomSailor.Repositories\ClassroomSailor.Repositories.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.2" />
   </ItemGroup>
 
 </Project>

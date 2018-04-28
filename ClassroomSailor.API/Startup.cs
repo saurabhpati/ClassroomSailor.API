@@ -1,7 +1,9 @@
-﻿using ClassroomSailor.Repositories;
+﻿using ClassroomSailor.Entities.User;
+using ClassroomSailor.Repositories;
 using ClassroomSailor.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,7 +24,12 @@ namespace ClassroomSailor.API
         {
             services.AddMvc();
             services.AddDbContext<ClassroomSailorDbContext>(options =>
-                options.UseSqlServer(this.Configuration.GetConnectionString("Default")));
+                options.UseSqlServer(this.Configuration.GetConnectionString("Default")))
+                .AddIdentityCore<ClassroomSailorUserEntity>(option => option.Lockout.MaxFailedAccessAttempts = 5)
+                .AddEntityFrameworkStores<ClassroomSailorDbContext>()
+                .AddClaimsPrincipalFactory<ClassroomSailorUserEntity>()
+                .AddRoles<IdentityRole>();
+           
             RepositoryConfiguration.Configure(services);
             ServiceConfiguration.Configure(services);
         }

@@ -1,4 +1,5 @@
-﻿using ClassroomSailor.Entities.User;
+﻿using ClassroomSailor.Entities.Classroom;
+using ClassroomSailor.Entities.User;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,5 +10,7 @@ namespace ClassroomSailor.Repositories
         public ClassroomSailorDbContext(DbContextOptions<ClassroomSailorDbContext> options) : base(options)
         {
         }
+
+        public DbSet<ClassroomEnity> Classrooms { get; set; }
     }
 }

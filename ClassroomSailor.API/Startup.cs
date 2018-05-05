@@ -1,4 +1,6 @@
-﻿using ClassroomSailor.Entities.Factories;
+﻿using ClassroomSailor.API.Models.Factory;
+using ClassroomSailor.API.Models.User;
+using ClassroomSailor.Entities.Factories;
 using ClassroomSailor.Entities.User;
 using ClassroomSailor.Repositories;
 using ClassroomSailor.Repositories.User;
@@ -36,10 +38,11 @@ namespace ClassroomSailor.API
             services.AddScoped<UserManager<ClassroomSailorUserEntity>>()
                     .AddScoped<SignInManager<ClassroomSailorUserEntity>>()
                     .AddScoped<IdentityRole>()
-                    .AddScoped<IAccountService<ClassroomSailorUserEntity>, AccountService<ClassroomSailorUserEntity>>()
+                    .AddScoped<IAccountService<ClassroomSailorUserApiModel>, AccountService<ClassroomSailorUserApiModel>>()
                     .AddScoped<IClassroomSailorUserService<ClassroomSailorUserEntity>, ClassroomSailorUserService<ClassroomSailorUserEntity>>()
                     .AddScoped<IClassroomSailorUserRepository<ClassroomSailorUserEntity>, ClassroomSailorUserRepository>()
                     .AddScoped<IClassroomSailorUserEntityFactory<ClassroomSailorUserEntity>, ClassroomSailorUserEntityFactory<ClassroomSailorUserEntity>>()
+                    .AddScoped<IModelFactory<ClassroomSailorUserApiModel>, ClassroomSailorUserModelFactory<ClassroomSailorUserApiModel>>()
                     .AddTransient<IUserClaimsPrincipalFactory<ClassroomSailorUserEntity>, ClassroomSailorUserClaimsPrincipalFactory>();
         }
 

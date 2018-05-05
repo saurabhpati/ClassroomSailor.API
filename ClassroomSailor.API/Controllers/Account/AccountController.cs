@@ -52,7 +52,7 @@ namespace ClassroomSailor.API.Controllers.Account
 
         [HttpPost]
         [Route("Create")]
-        public virtual async Task<IActionResult> PostAsync([FromBody]ClassroomSailorUserApiModel model)
+        public async Task<IActionResult> PostAsync([FromBody]ClassroomSailorUserApiModel model)
         {
             if (model == null)
             {
@@ -69,7 +69,7 @@ namespace ClassroomSailor.API.Controllers.Account
 
         [HttpPut]
         [Route("Update")]
-        public virtual async Task<IActionResult> UpdateAsync([FromBody]ClassroomSailorUserApiModel model)
+        public async Task<IActionResult> UpdateAsync([FromBody]ClassroomSailorUserApiModel model)
         {
             if (model == null)
             {
@@ -86,7 +86,7 @@ namespace ClassroomSailor.API.Controllers.Account
 
         [HttpDelete]
         [Route("Delete/{id}")]
-        public virtual async Task<IActionResult> DeleteAsync(String id)
+        public async Task<IActionResult> DeleteAsync(String id)
         {
             ClassroomSailorUserApiModel user = await this._service.DeleteAsync(id).ConfigureAwait(false);
             return new JsonResult(user);

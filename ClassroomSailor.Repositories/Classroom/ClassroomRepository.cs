@@ -48,7 +48,7 @@ namespace ClassroomSailor.Repositories.Classroom
             }
         }
 
-        public async Task<ClassroomEnity> GetByIdAsync(int id)
+        public async Task<ClassroomEnity> GetByIdAsync(Int32 id)
         {
             using (this._database)
             {
@@ -56,7 +56,7 @@ namespace ClassroomSailor.Repositories.Classroom
             }
         }
 
-        public Task<ClassroomEnity> GetByIdAsync(string id)
+        public Task<ClassroomEnity> GetByIdAsync(String id)
         {
             throw new NotImplementedException();
         }

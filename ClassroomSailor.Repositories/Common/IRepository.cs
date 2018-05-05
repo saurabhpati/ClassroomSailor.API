@@ -7,7 +7,7 @@ namespace ClassroomSailor.Repositories.Common
 {
     public interface IRepository<T> where T : IBaseEntity
     {
-        Task<T> GetByIdAsync(Int64 id);
+        Task<T> GetByIdAsync(String id);
 
         Task<IEnumerable<T>> GetAllAsync();
 
@@ -15,6 +15,6 @@ namespace ClassroomSailor.Repositories.Common
 
         Task<T> UpdateAsync(T entity);
 
-        Task<T> DeleteAsync(Int64 id);
+        Task<T> DeleteAsync(String id);
     }
 }

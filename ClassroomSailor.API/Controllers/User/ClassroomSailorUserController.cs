@@ -19,15 +19,15 @@ namespace ClassroomSailor.API.Controllers.User
 
         #region Get
 
-        [Route("{id:int}")]
-        public async Task<IActionResult> Get(Int64 id)
+        [Route("{id}")]
+        public async Task<IActionResult> GetById(String id)
         {
-            T entity = await this.Service.GetByIdAsync(id).ConfigureAwait(false);
+            T entity = await this.Service.GetClassroomUserByIdAsync(id).ConfigureAwait(false);
             return new JsonResult(entity);
         }
 
         [Route("{email}")]
-        public async Task<IActionResult> Get(String email)
+        public async Task<IActionResult> GetByEmail(String email)
         {
             T entity = await this.Service.GetByEmailAsync(email).ConfigureAwait(false);
             return new JsonResult(entity);

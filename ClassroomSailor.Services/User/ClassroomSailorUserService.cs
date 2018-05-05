@@ -26,7 +26,7 @@ namespace ClassroomSailor.Services.User
             return this.BackwardConverter(await this._repository.AddAsync(this.ForwardConverter(model)));
         }
 
-        public async Task<T> DeleteAsync(Int64 id)
+        public async Task<T> DeleteAsync(String id)
         {
             return this.BackwardConverter(await this._repository.DeleteAsync(id).ConfigureAwait(false));
         }
@@ -44,10 +44,9 @@ namespace ClassroomSailor.Services.User
             return this.BackwardConverter(await this._repository.GetByEmailAsync(email).ConfigureAwait(false));
         }
 
-        public async Task<T> GetByIdAsync(Int64 id)
+        public async Task<T> GetByIdAsync(String id)
         {
-            return this.BackwardConverter(await this._repository.GetByIdAsync(id).ConfigureAwait(false));
-
+            return this.BackwardConverter(await this._repository.GetClassroomUserById(id).ConfigureAwait(false));
         }
 
         public async Task<T> UpdateAsync(T entity)
@@ -104,5 +103,6 @@ namespace ClassroomSailor.Services.User
             model.TwoFactorEnabled = entity.TwoFactorEnabled;
             return model;
         }
+
     }
 }

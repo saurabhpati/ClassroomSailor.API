@@ -9,5 +9,9 @@ namespace ClassroomSailor.Repositories.Classroom
     public interface IClassroomRepository<T> : IRepository<T> where T : IBaseEntity
     {
         Task<IQueryable<T>> GetClassroomsByGrade(Int16 grade);
+
+        Task<T> GetByIdAsync(Int32 id);
+
+        Task<T> DeleteAsync(Int32 id);
     }
 }

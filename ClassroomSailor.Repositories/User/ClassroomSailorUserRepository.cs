@@ -26,7 +26,7 @@ namespace ClassroomSailor.Repositories.User
             }
         }
 
-        public async Task<ClassroomSailorUserEntity> DeleteAsync(Int64 id)
+        public async Task<ClassroomSailorUserEntity> DeleteAsync(String id)
         {
             using (this._database)
             {
@@ -56,7 +56,7 @@ namespace ClassroomSailor.Repositories.User
             }
         }
 
-        public async Task<ClassroomSailorUserEntity> GetByIdAsync(Int64 id)
+        public async Task<ClassroomSailorUserEntity> GetByIdAsync(String id)
         {
             using (this._database)
             {

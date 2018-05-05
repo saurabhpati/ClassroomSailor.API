@@ -25,7 +25,7 @@ namespace ClassroomSailor.Repositories.Classroom
             }
         }
 
-        public async Task<ClassroomEnity> DeleteAsync(long id)
+        public async Task<ClassroomEnity> DeleteAsync(Int32 id)
         {
             using (this._database)
             {
@@ -33,6 +33,11 @@ namespace ClassroomSailor.Repositories.Classroom
                 EntityEntry<ClassroomEnity> entry = this._database.Classrooms.Remove(entity);
                 return entry.Entity;
             }
+        }
+
+        public Task<ClassroomEnity> DeleteAsync(String id)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<IEnumerable<ClassroomEnity>> GetAllAsync()
@@ -43,12 +48,17 @@ namespace ClassroomSailor.Repositories.Classroom
             }
         }
 
-        public async Task<ClassroomEnity> GetByIdAsync(long id)
+        public async Task<ClassroomEnity> GetByIdAsync(int id)
         {
             using (this._database)
             {
                 return await this._database.Classrooms.FindAsync(id).ConfigureAwait(false);
             }
+        }
+
+        public Task<ClassroomEnity> GetByIdAsync(string id)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<IQueryable<ClassroomEnity>> GetClassroomsByGrade(Int16 grade)

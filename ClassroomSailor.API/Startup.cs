@@ -36,7 +36,7 @@ namespace ClassroomSailor.API
             services.AddScoped<UserManager<ClassroomSailorUserEntity>>()
                     .AddScoped<SignInManager<ClassroomSailorUserEntity>>()
                     .AddScoped<IdentityRole>()
-                    .AddScoped<IAccountService<ClassroomSailorUserEntity>, AccountService>()
+                    .AddScoped<IAccountService<ClassroomSailorUserEntity>, AccountService<ClassroomSailorUserEntity>>()
                     .AddScoped<IClassroomSailorUserService<ClassroomSailorUserEntity>, ClassroomSailorUserService<ClassroomSailorUserEntity>>()
                     .AddScoped<IClassroomSailorUserRepository<ClassroomSailorUserEntity>, ClassroomSailorUserRepository>()
                     .AddScoped<IClassroomSailorUserEntityFactory<ClassroomSailorUserEntity>, ClassroomSailorUserEntityFactory<ClassroomSailorUserEntity>>()

@@ -10,32 +10,32 @@ namespace ClassroomSailor.API.Controllers.User
     [Route("v1/api/[controller]")]
     public class ClassroomSailorUserController<T> : Controller where T : ClassroomSailorUserApiModel
     {
+        private readonly IClassroomSailorUserService<T> _service;
+
         public ClassroomSailorUserController(IClassroomSailorUserService<T> service)
         {
-            this.Service = service;
+            this._service = service;
         }
-
-        protected IClassroomSailorUserService<T> Service { get; private set; }
 
         #region Get
 
         [Route("{id}")]
         public async Task<IActionResult> GetById(String id)
         {
-            T entity = await this.Service.GetClassroomUserByIdAsync(id).ConfigureAwait(false);
+            T entity = await this._service.GetByIdAsync(id).ConfigureAwait(false);
             return new JsonResult(entity);
         }
 
         [Route("{email}")]
         public async Task<IActionResult> GetByEmail(String email)
         {
-            T entity = await this.Service.GetByEmailAsync(email).ConfigureAwait(false);
+            T entity = await this._service.GetByEmailAsync(email).ConfigureAwait(false);
             return new JsonResult(entity);
         }
 
         public async Task<IActionResult> Get()
         {
-            IEnumerable<T> entity = await this.Service.GetAllAsync().ConfigureAwait(false);
+            IEnumerable<T> entity = await this._service.GetAllAsync().ConfigureAwait(false);
             return new JsonResult(entity);
         }
 
@@ -52,7 +52,7 @@ namespace ClassroomSailor.API.Controllers.User
                 return new JsonResult(null);
             }
 
-            T entity = await this.Service.AddAsync(model).ConfigureAwait(false);
+            T entity = await this._service.AddAsync(model).ConfigureAwait(false);
             return new JsonResult(entity);
         }
 
@@ -69,7 +69,7 @@ namespace ClassroomSailor.API.Controllers.User
                 return new JsonResult(null);
             }
 
-            T entity = await this.Service.UpdateAsync(model).ConfigureAwait(false);
+            T entity = await this._service.UpdateAsync(model).ConfigureAwait(false);
             return new JsonResult(entity);
         }
 
@@ -79,14 +79,9 @@ namespace ClassroomSailor.API.Controllers.User
 
         [HttpDelete]
         [Route("Delete/{id}")]
-        public virtual async Task<IActionResult> DeleteAsync(Int64 id)
+        public virtual async Task<IActionResult> DeleteAsync(String id)
         {
-            if (id < 0)
-            {
-                return null;
-            }
-
-            T entity = await this.Service.DeleteAsync(id).ConfigureAwait(false);
+            T entity = await this._service.DeleteAsync(id).ConfigureAwait(false);
             return new JsonResult(entity);
         }
 

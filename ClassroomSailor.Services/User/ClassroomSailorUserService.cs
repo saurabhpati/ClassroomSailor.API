@@ -46,7 +46,7 @@ namespace ClassroomSailor.Services.User
 
         public async Task<T> GetByIdAsync(String id)
         {
-            return this.BackwardConverter(await this._repository.GetClassroomUserById(id).ConfigureAwait(false));
+            return this.BackwardConverter(await this._repository.GetByIdAsync(id).ConfigureAwait(false));
         }
 
         public async Task<T> UpdateAsync(T entity)

@@ -18,6 +18,7 @@ namespace ClassroomSailor.API.Controllers.Account
         }
 
         [HttpPost]
+        [Route("Register")]
         public async Task<IActionResult> Register([FromBody]ClassroomSailorUserApiModel model)
         {
             ClassroomSailorUserApiModel user = await this._service.RegisterAsync(model, model.Password, model.Role).ConfigureAwait(false);
@@ -44,23 +45,6 @@ namespace ClassroomSailor.API.Controllers.Account
         {
             IEnumerable<ClassroomSailorUserApiModel> users = await this._service.GetAllAsync().ConfigureAwait(false);
             return new JsonResult(users);
-        }
-
-        #endregion
-
-        #region Add
-
-        [HttpPost]
-        [Route("Create")]
-        public async Task<IActionResult> PostAsync([FromBody]ClassroomSailorUserApiModel model)
-        {
-            if (model == null)
-            {
-                return new JsonResult(null);
-            }
-
-            ClassroomSailorUserApiModel user = await this._service.AddAsync(model).ConfigureAwait(false);
-            return new JsonResult(user);
         }
 
         #endregion

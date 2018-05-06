@@ -102,6 +102,7 @@ namespace ClassroomSailor.Services.Account
             entity.Id = model.Id;
             entity.FirstName = model.FirstName;
             entity.MiddleName = model.MiddleName;
+            entity.LastName = model.LastName;
             entity.PasswordHash = model.PasswordHash;
             entity.BirthDate = model.BirthDate;
             entity.Email = model.Email;
@@ -123,10 +124,11 @@ namespace ClassroomSailor.Services.Account
 
         private T BackwardConverter(ClassroomSailorUserEntity entity)
         {
-            T model = this._factory.GetEntity() as T;
+            T model = this._factory.GetUserEntity() as T;
             model.Id = entity.Id;
             model.FirstName = entity.FirstName;
             model.MiddleName = entity.MiddleName;
+            model.LastName = entity.LastName;
             model.PasswordHash = entity.PasswordHash;
             model.BirthDate = entity.BirthDate;
             model.Email = entity.Email;

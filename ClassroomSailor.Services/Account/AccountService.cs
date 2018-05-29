@@ -12,12 +12,12 @@ namespace ClassroomSailor.Services.Account
     {
         private readonly UserManager<ClassroomSailorUserEntity> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly IClassroomSailorUserEntityFactory<ClassroomSailorUserEntity> _factory;
+        private readonly IClassroomSailorUserEntityFactory<T> _factory;
 
         public AccountService(
             UserManager<ClassroomSailorUserEntity> userManager,
             RoleManager<IdentityRole> roleManager,
-            IClassroomSailorUserEntityFactory<ClassroomSailorUserEntity> factory)
+            IClassroomSailorUserEntityFactory<T> factory)
         {
             this._userManager = userManager;
             this._roleManager = roleManager;
@@ -124,7 +124,7 @@ namespace ClassroomSailor.Services.Account
 
         private T BackwardConverter(ClassroomSailorUserEntity entity)
         {
-            T model = this._factory.GetUserEntity() as T;
+            T model = this._factory.GetEntity();
             model.Id = entity.Id;
             model.FirstName = entity.FirstName;
             model.MiddleName = entity.MiddleName;

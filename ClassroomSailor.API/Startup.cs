@@ -46,8 +46,8 @@ namespace ClassroomSailor.API
                     .AddScoped<IClassroomService<ClassroomApiModel>, ClassroomService<ClassroomApiModel>>()
                     .AddScoped<IClassroomSailorUserRepository<ClassroomSailorUserEntity>, ClassroomSailorUserRepository>()
                     .AddScoped<IClassroomRepository<ClassroomEnity>, ClassroomRepository>()
-                    .AddScoped<IClassroomSailorUserEntityFactory<ClassroomSailorUserEntity>, ClassroomSailorUserEntityFactory<ClassroomSailorUserEntity>>()
-                    .AddScoped<IClassroomEntityFactory<ClassroomEnity>, ClassroomEntityFactory<ClassroomEnity>>()
+                    .AddScoped<IClassroomSailorUserEntityFactory<ClassroomSailorUserApiModel>, ClassroomSailorUserEntityFactory<ClassroomSailorUserApiModel>>()
+                    .AddScoped<IClassroomEntityFactory<ClassroomApiModel>, ClassroomEntityFactory<ClassroomApiModel>>()
                     .AddTransient<IUserClaimsPrincipalFactory<ClassroomSailorUserEntity>, ClassroomSailorUserClaimsPrincipalFactory>();
         }
 

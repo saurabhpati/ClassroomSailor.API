@@ -11,7 +11,7 @@ namespace ClassroomSailor.Entities.Factories
 
         public ClassroomSailorUserEntity GetUserEntity()
         {
-            return new T();
+            return new ClassroomSailorUserEntity();
         }
     }
 }
